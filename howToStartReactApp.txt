@@ -1,0 +1,29 @@
+a bunch of js files that will be bundle by a bundler
+once bundled the files are place on server where user can access the file
+when are app ip is req by user. our server responseds with a html file.
+note that all react files always have a html file attached to it
+
+html files dont do much other than tell the browser to req some more js files from our server
+once done our server sends the bundled js files
+
+//how react is displayed
+
+// hook onto an element in the dom
+const rootElement = document.getElementById("root");
+// tell react we would like to take control of that element
+const root = createRoot(rootElement);
+
+// tell react to convert jsx to html and display it in the tartget ellement
+root.render(
+  <StrictMode>
+    <div className="wrapper">
+      <App />
+    </div>
+  </StrictMode>
+);
+
+
+/////useState()
+useState is a function that works with the react state system
+works like variables storing data that will change over time
+when ever state in changes reacts auto updates data displayed
