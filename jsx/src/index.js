@@ -20,7 +20,20 @@ const root = ReactDOM.createRoot(el)
 // 4. create a component
 // functions to return jsx
 let App = ()=>{
-    return(<h1> hello world</h1>)
+    // display js vars in jsx
+    // create var: vars can be of any data type but know, that react cant render bool. so all dataTypes i.e string Nums bigInt symbols etc, but not true, false, null and undefined 
+
+    // datastructures for vars in react. array elements gets smushed into one value, and objects are nit valid react children
+    let variable = 'hello world'
+    let name = 'david'
+    // use of conditionals
+    if(Math.random()>0.1){
+        // change var based on condition
+        variable = 'hello guys'
+    }
+    // use interpolation{} to return a js var
+    // {} can also be used like template literals. for running pure js expressions. cant mix values in {}
+    return(<h1>{variable}. My name is {name} and the time is {new Date().toLocaleString()}</h1>)
 }
 // 5. show the component on screen
 // display component with root(the element react has taken control over)
