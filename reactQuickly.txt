@@ -1,0 +1,55 @@
+jsx is important. it makes structuring the app easier. Easier to read to
+
+in using the old react.create element. Once the code base grows the code brcomes harder to read and to avoid bugs.
+
+ie what do elements do. jsx doesnt auto appear in the browser. it just tells react what elements to create. for jsx to appear in the browser we need to use the return keyword
+
+////////////////////////
+three tenets of components-design
+
+1. nesting- show a component inside a components
+
+2. reusabilty- components that we can use over and over again without rewriting the component. ie) buttons do the same thing. Show some text and do something when clicked. components are basically little pieces of code for that can be reuse in many diff apps
+
+3. Configuration- config components when they are created- even as components can be reused(buttons etc). we should still be able to add some costum features to them.
+
+
+////////////////////////////////////////////////
+steps to create reusable components
+step.1 identify jsx that is duplicate. components follow the dry principle. we write code once but reuse it in multiple parts of the codebase rather than writing similar code every time we need to perform the same operation over and over again
+
+step.2 once duplicate jsx is spotted we try to isolate the code and give it a very discriptive name. ie if we have a jsx comment component and we dupicate the jsx to produce multiple components. we should instead  get the comment jsx and and turn it into a stand alone comment component 
+like so const CommentDetail = ()=>{return()}
+
+step3. once jsx has been made into a stand alone component. the next thing to do is to send the component to its own standAlone module. the module file should be named after the component. ie. CommentDetail.js should hold the CommentDetail component
+
+step4. Once file is created move the jsx component to the file. 
+
+step.5 make the components configurable with probs. if parts of jsx are hard coded when it should be dynamic. use props to make it costum. like do not hard code dates, user names etc they should be dynamic
+
+
+////////////////////////////////////////////////
+nesting components
+steps to render nested component
+step1. export component from component module
+step2. import component module into app or index.js.
+do not use interpolation to render, that is for js vars. Instead render 
+component like so <Component />
+
+/////////////////////////////////////////////////
+understand component hierachy
+
+////////////
+props sysytem- systems for passing parent Data from the parent component to the child components. this is what makes components dynamic and costumization.
+
+visaulize app like an object
+// one istance of app. the app holds the children. App is the parent
+
+let App = {
+    // the children are inside app. the need to be in app to be rendered.ie-CommentDetail
+
+    CommentDetail:,
+    CommentDetail:,
+    CommentDetail:,
+}
+
