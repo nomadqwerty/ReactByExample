@@ -61,7 +61,7 @@ const root = ReactDOM.createRoot(el)
 // 1. all props follow camelCase, maxlength is now maxLength 
 // 2. props meant for numbers should be wrapped in curly braces{4},maxLength={4}
 // 3. probs meant for booleans should be wrapped in {}, in case of 'true' there is no need to specify true. ie spellCheck, but if false specify it in {}, spellCheck={false}
-// 4. in jsx className is the same as class in html. classes are used in styling for css. jsx is in javascript and class in js is a keyword
+// 4. in jsx className is the same as class in html. classes are used in styling for css. jsx is written in javascript and class in js is a keyword
 // 5. in jsx inlin css styles are in objects. properties are specified with camelCases. ie padding-top is paddingTop
 
 let App = ()=>{

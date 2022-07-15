@@ -1,3 +1,82 @@
+// used for displaying components
+
+// in these five steps
+// 1. import react lib dom 
+// why two libraries?
+// react understands and reads components and how multiple components work together. cant display components in the browswer
+import React from 'react'
+
+// react dom understands how to get components to show up in the browser
+// converts jsx to html
+import ReactDOM from 'react-dom/client'
+
+// 2. hook onto html elelment with root id
+const el = document.getElementById('root')
+
+// 3. take control of the elelment
+// tell reactDom to show are app in the browser 
+const root = ReactDOM.createRoot(el)
+
+// 4. create a component
+// functions to return jsx
+// eg.1
+// let App = ()=>{
+//     // display js vars in jsx
+//     // create var: vars can be of any data type but know that react cant render bool. so all dataTypes i.e string Nums bigInt symbols etc, but not true, false, null and undefined 
+
+//     // datastructures for vars in react. array elements gets smushed into one value, and objects are nit valid react children
+//     let variable = 'hello world'
+//     let name = 'david'
+//     // use of conditionals
+//     if(Math.random()>0.1){
+//         // change var based on condition
+//         variable = 'hello guys'
+//     }
+//     // use interpolation{} to return a js var
+//     // {} can also be used like template literals. for running pure js expressions. cant mix values in {}
+//     return(<h1>{variable}. My name is {name} and the time is {new Date().toLocaleString()}</h1>)
+// }
+/////////////////////////////////////////////////////////////////
+// eg 2
+// costumize element with props
+// let App = ()=>{
+//     // input
+//     // props is short for properties. 
+//     // we use propbs to costumize elements in jsx.
+//     // we can use js to specify props to be referenced inside elements
+//     // props can be of string and numbers, but of also arrays and objects
+//     // arrays and objects are to be wrapped with curly {} jst like numbers
+//     let arr = [1,2,3]
+//     let obj = {color:'red'}
+//     let mins = 5
+//     return(
+//         <input type='number' max={10} min={mins} style={obj} list={arr}></input>
+//     )
+//     // when specifiying props directly on elements. if string wrap with "number", if number wrap with {3} 
+// }
+
+////////////////////////////////////////////////////////////////////
+//textArea auto focus doesnt work in jsx how it does in html
+// convert html to jsx in 5 steps
+// 1. all props follow camelCase, maxlength is now maxLength 
+// 2. props meant for numbers should be wrapped in curly braces{4},maxLength={4}
+// 3. probs meant for booleans should be wrapped in {}, in case of 'true' there is no need to specify true. ie spellCheck, but if false specify it in {}, spellCheck={false}
+// 4. in jsx className is the same as class in html. classes are used in styling for css. jsx is written in javascript and class in js is a keyword
+// 5. in jsx inlin css styles are in objects. properties are specified with camelCases. ie padding-top is paddingTop
+
+let App = ()=>{
+    let csss = {
+        border:'6px solid red',
+        paddingTop:'100px'
+    }
+return(<textarea maxLength={5} autoFocus={true} spellCheck={false} style={csss}></textarea>)
+} 
+
+// 5. show the component on screen
+// display component with root(the element react has taken control over)
+// element.render(<component />)
+root.render(<App/>)
+
 jsx is important. it makes structuring the app easier. Easier to read to
 
 in using the old react.create element. Once the code base grows the code brcomes harder to read and to avoid bugs.
@@ -25,7 +104,7 @@ step3. once jsx has been made into a stand alone component. the next thing to do
 
 step4. Once file is created move the jsx component to the file. 
 
-step.5 make the components configurable with probs. if parts of jsx are hard coded when it should be dynamic. use props to make it costum. like do not hard code dates, user names etc they should be dynamic
+step.5 make the components configurable with props. if parts of jsx are hard coded when it should be dynamic. use props to make it costum. like do not hard code dates, user names etc they should be dynamic
 
 
 ////////////////////////////////////////////////
@@ -40,16 +119,83 @@ component like so <Component />
 understand component hierachy
 
 ////////////
-props sysytem- systems for passing parent Data from the parent component to the child components. this is what makes components dynamic and costumization.
+props for properties
+props sysytem- systems for passing Data from the parent component to the child components. this is what makes components dynamic and costumization. think of props as js vars that look like html attributes. this props make componenets more dynamic. childrren cant pass props to parents directly
 
 visaulize app like an object
 // one istance of app. the app holds the children. App is the parent
+// the children are inside app. the need to be in app to be rendered.ie-CommentDetailz
 
 let App = {
-    // the children are inside app. the need to be in app to be rendered.ie-CommentDetail
-
-    CommentDetail:,
-    CommentDetail:,
-    CommentDetail:,
+    ApprovalCard:{
+        CommentDetail:,
+    }
 }
 
+//////////////////////////
+passing props
+there are two stages for using react props system.
+// 1. passing the props down
+// 2. consuming props passed down
+
+when passing down props or providing props. 
+1. we specify props in the component tags. <Component NameOfProps='Mr.propsMans'/>
+
+2.props names should make sense in relation to the Component features
+ie authorOfComment='Name'
+
+3. props are unique to the component instance it was specified in
+<Component ThisIsMyProp='iDontLikeSharingMyPropsWithAnyone'/>
+<Component ThisIsMyVeryOwnProp='iDontLikeSharingMyPropsWithAnyoneToo'/>
+<Component ThisIsMyVeryOwnPropJstForMe='meToo'/>
+
+when consuming props. with child
+
+when consuming props.
+1. the first arguement for the component(the funct that returns jsx) is meant for the props obj. we get access to it if specified as a param in the component
+
+2. use interpolations to insert into jsx. its basically javascript values. again use {props.someShit}
+
+3. they work like varaibles in js
+
+4. props can be passed into jsx elelments || html attributes like src ,href, className etc
+
+let  Comp = (props)=>{
+    return(<div className={props.AclassName}>{props.someData}<div/>)
+} 
+
+///////////////////////////////
+passing multiple props
+we can also pass multiple props into components
+<Component 1Prop='meIam1' 2Prop='meIam2' 3Prop='meIam3'>
+
+
+//////////////////////////////////
+components reusablity
+@TODO: Approval card. to practice reusable component.
+1. create reusable component. create standAlone component with its own module file
+
+////passing components as props
+1. we can pass props as attributes in jsx 
+2. but to pass a component as a prop we insert it between the component tags
+i.e <ReusableComponent> <PropComponent/> </ReusableComponent>
+3. comsume comp props as usuall (props)=>{}
+4. component props are inside a nested children object.
+5. consume props with interpolation <div>{props.children}</div>
+
+///////////////////////////////////////////
+class based componenets
+- what are class based comps
+1. class based components still serve the same purpose which is to return jsx.
+2. but it can do more. class comps gives us abilty to use react Lifecycle methods. more on this laterOn.
+3. also give use access to react state sysytem. to update content. more on this laterOn
+
+// diff between class and function comps.
+// early react used functions to only return jsx. functs cant use state sysytem or Lifecycle. was strictly for showing content. 
+// but now react function component has Some thing called the hooks sysytem. more on this laterOn. but know the hooks gives functions the abilty to run code at specified time and gives functs access to react state system
+
+
+// seasons app scarfold
+
+// App comp. this takes in user data. to pass down to child
+// seasons comp. this consumes data and renders text and icons based on data it recieves
