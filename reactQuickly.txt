@@ -42,7 +42,7 @@ const root = ReactDOM.createRoot(el)
 // let App = ()=>{
 //     // input
 //     // props is short for properties. 
-//     // we use propbs to costumize elements in jsx.
+//     // we use props to costumize elements in jsx.
 //     // we can use js to specify props to be referenced inside elements
 //     // props can be of string and numbers, but of also arrays and objects
 //     // arrays and objects are to be wrapped with curly {} jst like numbers
@@ -97,7 +97,7 @@ three tenets of components-design
 steps to create reusable components
 step.1 identify jsx that is duplicate. components follow the dry principle. we write code once but reuse it in multiple parts of the codebase rather than writing similar code every time we need to perform the same operation over and over again
 
-step.2 once duplicate jsx is spotted we try to isolate the code and give it a very discriptive name. ie if we have a jsx comment component and we dupicate the jsx to produce multiple components. we should instead  get the comment jsx and and turn it into a stand alone comment component 
+step.2 once duplicate jsx is spotted we try to isolate the code and give it a very discriptive name in relation to its purpose. ie if we have a jsx comment component and we dupicate the jsx to produce multiple components. we should instead  get the comment jsx and and turn it into a stand alone comment component 
 like so const CommentDetail = ()=>{return()}
 
 step3. once jsx has been made into a stand alone component. the next thing to do is to send the component to its own standAlone module. the module file should be named after the component. ie. CommentDetail.js should hold the CommentDetail component
@@ -199,3 +199,87 @@ class based componenets
 
 // App comp. this takes in user data. to pass down to child
 // seasons comp. this consumes data and renders text and icons based on data it recieves
+
+
+// get user location. 
+// the navigator Api can be found in the window object.
+// we use the api like. window.navigator.geolaction.getCurrentPosition(Resolve CB, Reject CB)
+// resolve cb f(n) runs when its succesful and the Data is return.
+// reject cb f(n) runs when its unsuccesful and an err is return
+
+// what happens in the app (fucn)
+// browser loads js file- browser reads the file andd creates the app components. and invokes the component functio calling on the geoloc api
+// once app is created. the browser calls the goeloc api
+// app returns jsx instantly.
+// the process is very synchronous. so any asynchronous operation will work if the app is rerendered
+
+// the geoloc sevice is promised based. it takes some time to run and get data. before then the rest of our code already executed.
+// we need away consume promise based operations
+
+// refactor func to class
+// rules to make class comps
+// use js classes, Extent the React.Component class(inherit some features)
+// must define a render() method that returns some jsx: we need render to return jsx.
+// construction(). this fucn is important create instance of a class.
+it is the very first fucn called when we create instances of a class. this makes it a good place to initialize state
+
+
+// ///////////////////
+state system in react
+//1. helps with async operations in react
+//2. updates and rerenders the app
+
+
+// rules of the state system
+// 1. only usable in class components
+// 2. props can be confused with state
+// 3. State is a js object that holds data relavant to a specific componnent. the data Obj is strictly revelant the component we are working one. ie. the will a specific state Obj for our App component
+// 4. updating data in state. will instantly(almost) make our comp rerender.
+if we want a our comp to rerender we must update state
+// 5. state must be initialized once component is created
+// 6. state can only be updated with setState() functions
+
+// initializing state in class comp
+// with the constructor(). this fucn is important to create instance of a class.
+it is the very first func called when we create instances of a class. this makes it a good place to initialize state.
+
+// jst like the func comps the class to makes use of the props system
+// call super() funct. this func gives us access to the parent class functions and methods. because our class extends React.component class. we call super() for our class App has access to React.Component class funcs and meths
+// call super(props)
+
+// adding the constructor func and calling the super(props) func, initialize state with an obj. the this KeyWord is a reference to our class(basically an object). so this.state = {}, also means ourClass.state={}
+
+//e.g  constructor(props){
+    super(props)
+    this.state={}
+  }
+
+  ////////////////////////////////
+  update state with props
+  // because the state is initialized, we can access the state and its properties using this(remember this is a pointer to our class)
+  // this.state.property
+
+  // in the render funct we try not to perform long operations. this is because the render funct will get called many times. so to avoid running the same task over and over again. take long operations out of the render funct
+
+  // update state and rerender
+  // use setState() to update state. we pass in an obj which will represent our state. setState({}), in the object we then set the property we needed to update.
+  // i.e setState({property:'value'}). i know you are thinking if this.state.proptery = value would work. it wont, infact thats a bad idea.
+  the onluy time we do a direct assignment is when initializing the state obj in the constructor, this.state={}
+
+
+
+  ///////////
+  // app life cycle summary.
+  // js file is loaded in browser.
+    - the browser read and runs our js file.
+  // instance of App is created
+    - the instance of our class app is created. because we use the constructor we have to use super to avod errors
+
+  // state object is created and initialized. the state must be state to work.
+
+  // we call the geoloc service. its a promise
+  // react render the comp
+
+  // then the geoloc promise is returned
+
+  // the setState rerenders the app with new data
