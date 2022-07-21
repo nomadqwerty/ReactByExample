@@ -2,8 +2,8 @@ import React from 'react';
 
 
 
-const Seasons = ()=>{
-    return (<div>Seasons</div>)
+const Seasons = (props)=>{
+    return (<div>Seasons, lat is: {props.lat} & lng is: {props.lng}</div>)
 }
 
 

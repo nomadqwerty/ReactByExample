@@ -219,9 +219,9 @@ class based componenets
 // refactor func to class
 // rules to make class comps
 // use js classes, Extent the React.Component class(inherit some features)
-// must define a render() method that returns some jsx: we need render to return jsx.
+// must define a render() method that returns some jsx:so if you want the browser to display the content, we need render to return jsx.
 // construction(). this fucn is important create instance of a class.
-it is the very first fucn called when we create instances of a class. this makes it a good place to initialize state
+it is the very first fucn called when we create instances of a class. this makes it a good place to initialize state. 
 
 
 // ///////////////////
@@ -240,14 +240,13 @@ if we want a our comp to rerender we must update state
 // 6. state can only be updated with setState() functions
 
 // initializing state in class comp
-// with the constructor(). this fucn is important to create instance of a class.
-it is the very first func called when we create instances of a class. this makes it a good place to initialize state.
+// with the constructor(). this func is important because at any point the comp is instanciated the function will always be called. because it is called first its a good place to initialize the state.
 
-// jst like the func comps the class to makes use of the props system
+// jst like the func comps the class comp also makes use of the props system. to pass data
 // call super() funct. this func gives us access to the parent class functions and methods. because our class extends React.component class. we call super() for our class App has access to React.Component class funcs and meths
 // call super(props)
 
-// adding the constructor func and calling the super(props) func, initialize state with an obj. the this KeyWord is a reference to our class(basically an object). so this.state = {}, also means ourClass.state={}
+// after adding the constructor func and calling the super(props) func, initialize state with an obj. the this KeyWord is a reference to our class(which is basically an object). so this.state = {}, also means ourClass.state={}. this enables us to refer to different methods and properties. in our class.
 
 //e.g  constructor(props){
     super(props)
@@ -262,9 +261,9 @@ it is the very first func called when we create instances of a class. this makes
   // in the render funct we try not to perform long operations. this is because the render funct will get called many times. so to avoid running the same task over and over again. take long operations out of the render funct
 
   // update state and rerender
-  // use setState() to update state. we pass in an obj which will represent our state. setState({}), in the object we then set the property we needed to update.
+  // use setState() to update state. we pass in an obj as a param which will represent our state. setState({}), in the object we then set the property we needed to update.
   // i.e setState({property:'value'}). i know you are thinking if this.state.proptery = value would work. it wont, infact thats a bad idea.
-  the onluy time we do a direct assignment is when initializing the state obj in the constructor, this.state={}
+  the only time we do a direct assignment is when initializing the state obj in the constructor, this.state={}. so in other words use setState({})
 
 
 
@@ -275,7 +274,7 @@ it is the very first func called when we create instances of a class. this makes
   // instance of App is created
     - the instance of our class app is created. because we use the constructor we have to use super to avod errors
 
-  // state object is created and initialized. the state must be state to work.
+  // state object is created and initialized. the state must be 'state' to work.basically assign an obj to state
 
   // we call the geoloc service. its a promise
   // react render the comp
@@ -283,3 +282,109 @@ it is the very first func called when we create instances of a class. this makes
   // then the geoloc promise is returned
 
   // the setState rerenders the app with new data
+
+
+  /////////
+  // error handling.
+  // handle errors gracefully
+  // create an error property in state. and update the property if error occurs.
+  // this.state = {error:''}
+  // if error ecountered. use setState({error:'error value'})
+  // nb, when using () with the return statement. return() avoid using semicolon. ;. this ends a js statement. and cant return a block of jsx
+
+
+///////////////
+// conditional rendering
+// you  can use if blocks to render conditionally.
+// if(this.state.error){
+    return(<div>error: {this.state.error}</div>)
+}
+// if(!this.state.property){
+    return(<div>cant find data</div>)
+}
+return(data)
+
+
+////////////////////////////
+// Lifecycle methods
+// these are optional methods given to us by react.
+// if we use them. the methods would be called at certain times in a componenets life cycle.
+
+class App {
+    //1
+    constructor(props){
+        //1b
+        super(props)
+        //1c
+        this.state={}
+    }
+    //2
+    render(){show content}
+
+    // life cycle methods give us the ability to perform certain operations at various stages in a components life cycle.
+    componentDidMount(){
+        // this is called as soon our app gets mounted in the browser. as the jsEngine reads our files and creates our app. this function is called.
+    }
+    // after being mounted our app sits around and waits for updates to the state obj
+    componentDidUpdate(){
+        // this func is called anytime our component is updated.
+        any time setState({}) is called this func gets called
+        // and anytime componentDidUpdate is called. the render methods is also called. and the jsx is return with the updated values
+    }
+    componentDidUnmount(){
+        // this method would be called when our app is unmounted and no longer loaded in the browser
+    }
+}
+
+// use like so
+componentDidMount(){
+    
+  }
+  componentDidUpdate(){
+    
+  }
+
+
+////////////////////////////
+// why LCM(life cycle methods) 
+// didMount: used for initial app setup, dataloading, outside api calls,etc
+// didUpdate: used for loading data that has been updated.change in state or props.
+// willUnmount. used when removing comps and cleaning up code
+
+////////////////////////////////////////////////////
+// refactoring data loading to lifeCM
+// use the componentDidMount fucn to help run set up code.
+// ie when using the geoloc service. we need the service to be called as soon our app has been mounted. 
+ie
+// componentDidMount(){
+window.navigator.geolocation.getCurrentPosition((position)=>{
+    let latitude = position.coords.latitude
+    let longitude = position.coords.longitude
+    this.setState({lat:latitude,lng:longitude})
+},(err)=>{
+    console.log(err)
+    this.setState({errorMsg:err.message})
+})
+}
+// this helps use the constructor() for class setup
+
+
+////////////////////////////////////////////
+// alternate state initializing
+// we can also refactor state obj to work outside the constructor()
+// by defining state out side the constructor() we can use it by it self
+// ie instead of this.state = {}, when using state with no constructor, jst use 'state = {}' with out the this keyword.
+// NB in javascript class with out constructor will always get a constructor() still. this happens by default.
+// by setting state = {}, our constructor still gets created as usual.
+
+// but babel adds som specialty to it. if comp has no constructor() and state is initialized. babel will also call super() and props for use
+// and super() is still called to inherit from react class.
+// it just makes us write less code
+
+
+//////////////////////////////////
+// passing state as props
+// if we have a stand alone comp that we need in the App.
+// 1. we import the comp from the file.
+// 2. we put the component in the render method. to show its content.
+// 3. pass props as usual and consume as usual.
