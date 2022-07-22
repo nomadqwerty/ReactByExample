@@ -32,7 +32,7 @@ const root = ReactDOM.createRoot(el)
 //         // change var based on condition
 //         variable = 'hello guys'
 //     }
-//     // use interpolation{} to return a js var
+//     // use interpolation{} to return a js var or an expression
 //     // {} can also be used like template literals. for running pure js expressions. cant mix values in {}
 //     return(<h1>{variable}. My name is {name} and the time is {new Date().toLocaleString()}</h1>)
 // }
@@ -377,7 +377,7 @@ window.navigator.geolocation.getCurrentPosition((position)=>{
 // NB in javascript class with out constructor will always get a constructor() still. this happens by default.
 // by setting state = {}, our constructor still gets created as usual.
 
-// but babel adds som specialty to it. if comp has no constructor() and state is initialized. babel will also call super() and props for use
+// but babel adds som specialty to it. if comp has no constructor() and state is initialized. babel will also call super() and props for use in the default constructor 
 // and super() is still called to inherit from react class.
 // it just makes us write less code
 
@@ -388,3 +388,13 @@ window.navigator.geolocation.getCurrentPosition((position)=>{
 // 1. we import the comp from the file.
 // 2. we put the component in the render method. to show its content.
 // 3. pass props as usual and consume as usual.
+// ie <Comp {this.state.property}/>
+
+
+// tips:
+// always extract logic from the compponent as much as possible.
+
+// we can also make use of the teary operator.
+// we can also use temp literals inside interpolation sintax
+
+// but instead of using teneray ops we can use a configuration object for the component
