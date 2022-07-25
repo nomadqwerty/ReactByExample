@@ -1,6 +1,8 @@
 import {React,Component} from 'react';
 import ReactDOM from 'react-dom/client';
 import Seasons from './Seasons';
+import Loader from './Loading';
+import './style/App.css'
 
 
 const el = document.getElementById('root')
@@ -23,15 +25,19 @@ class App extends Component{
       this.setState({errorMsg:err.message})
     })
   }
-  // it has a render method
-  render(){
+  //avoid conditionals in render()
+  renderContent(){
     if(!this.state.lat && !this.state.lng && !this.state.errorMsg){
-      return(<div>loading...</div>)
+      return(<Loader message='Please Allow location request...'/>)
     }
     if(this.state.errorMsg){
       return(<div>please try again {this.state.errorMsg}</div>)
     }
     return(<div> <Seasons lat={this.state.lat} lng={this.state.lng}/> </div>)
+  }
+  // it has a render method
+  render(){
+    return(<div style={{border:'10px solid red'}}>{this.renderContent()}</div>)
   }
 }
 
