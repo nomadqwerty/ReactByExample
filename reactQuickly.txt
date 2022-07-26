@@ -398,3 +398,61 @@ window.navigator.geolocation.getCurrentPosition((position)=>{
 // we can also use temp literals inside interpolation sintax
 
 // but instead of using teneray ops we can use a configuration object for the component
+
+//////////////////////////
+// styling in react. 
+// create separate file with .css extion
+// import './FileName.css' into the component module that you want to style
+
+// use className to target elelments for styling.
+// class name for container dive should be the same as name of component
+
+
+////////////////
+// default props
+. this a method for component. it snot part of the param
+// its a method. 
+// its and object{}
+// comp.defaultProps ={
+    nameOfProp:'default value'
+}
+// its use in the case we fail to specify props. on the comp.
+// used to specify props on very reusable component like spinners/loader
+
+
+/////////////////////////
+// avoiding conditional logic in render()
+// when developing apps, we may need to render content:jsx,css. no matter the condition.
+// i.e we may need to wrap all jsx in a border with color. and adding that to every single contional will be repetitive.
+// so if we have conditions in render(), its best to isolate the condiotional jsx into its own function. 
+// the render the very generic content.
+
+
+//////////////////
+/// pics project
+
+/////structuring projects.
+// create comp folder in the src.
+
+//  for all including app- because when we start using redux. the index.js will containt setup code. and mixing setUp code with component code can look messy , so try as much to isolate comps from index.js.
+
+// export comps and import into index.js
+
+
+///////////////////////////////////////
+///// handle user input
+// how do we handle user input to our app
+--1 we need to get user input. ie. search bar
+-- create searchbar class
+--- create html text input element. 
+--- form of Type input. 
+
+
+
+
+
+// how do we fetch data from api
+--2 make outside api calls to fetch data
+
+// how to show list of records
+--3 display data returned from api ie list of images

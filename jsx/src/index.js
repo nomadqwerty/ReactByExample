@@ -64,13 +64,15 @@ const root = ReactDOM.createRoot(el)
 // 4. in jsx className is the same as class in html. classes are used in styling for css. jsx is written in javascript and class in js is a keyword
 // 5. in jsx inlin css styles are in objects. properties are specified with camelCases. ie padding-top is paddingTop
 
-let App = ()=>{
-    let csss = {
-        border:'6px solid red',
-        paddingTop:'100px'
-    }
-return(<textarea maxLength={5} autoFocus={true} spellCheck={false} style={csss}></textarea>)
-} 
+// let App = ()=>{
+//     let csss = {
+//         border:'6px solid red',
+//         paddingTop:'100px'
+//     }
+// return(<textarea maxLength={5} autoFocus={true} spellCheck={false} style={csss}></textarea>)
+// } 
+
+class App extends React.Component {}
 
 // 5. show the component on screen
 // display component with root(the element react has taken control over)
