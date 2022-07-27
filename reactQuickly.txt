@@ -442,10 +442,48 @@ window.navigator.geolocation.getCurrentPosition((position)=>{
 ///////////////////////////////////////
 ///// handle user input
 // how do we handle user input to our app
---1 we need to get user input. ie. search bar
--- create searchbar class
---- create html text input element. 
---- form of Type input. 
+
+//////////////////////////////////////////////
+////---:we need to get user input. ie. search bar
+//create searchbar class
+//create html text input element. 
+//form of Type input. 
+// creating eventhandler:
+// i: create a method on the classComponent that requires the input(forms). this method is the function that will be called when an event is fired off in the client side.
+// ii: the method recieves a param, the first arg: which is (event)
+// iii: when listening to event for user input. the event object(arg1) passed into our method is the target.value= this holds the value we need to get from the user
+// iv: for the event to be fired off we need to attach a listener to the element that the input would be passed into. once listener is set up we then pass in our method as a callback to the event listener. because its a callback we do not need to call the function, like this.eventMethod() is wrong
+i.e onChange={this.eventMethod}
+// events listeners work as props, special props. ie. onChange, onClick,onSubmit
+
+N.B:- not all event listeners work for some jsx elements.ie: the onChange&onSubmit listener is not avaible of divs, because divs dont change, or submit
+
+// alternate EventListener syntax
+onChange={(event)=>{single line of code}}, this is for one liners.
+
+// controlled vs uncontrolled component
+// controlled-: refactor compnent, create a state obj with a prop.
+// in the method, once event is fired off, add the target.value to the state, create additional 'value' prop on element and pass in the value of the property in state object into it
+
+///// what exactly is an controlled component?
+what happens in our code?
+1. user gives input
+2. callback is called
+3. we update state with the value from the user input.
+4. because we update state with setState the component rerenders.
+5. we then pass user input into the value prop. value attributes in htmls hold the use input. so when a input is passed into value, it overides any data in the input fields
+
+// we follow these steps because. the value is stored in the dom event obj. and any time we want the data we reach into dom:e.target.value. to get the value. but with the controlled step. we store the user input in the state then update the value prop with the input stored in the 
+
+// controlled concept, this makes react the primary driver for any data on our app.
+
+// handle form submital
+// 1. attach the onSubmit EventListener to the form elelment so we can handle form submital
+
+// N.B- prevent the default page load. this is the default behavior in the browser,when enter is pressed the page reloads because it tries to submit the form automatical. its a default behavior : use e.preventDefault() to prevent page reloads
+
+// 2. create a callback method, to do somthing once submit event is fired off.  call e.preventDefault() in the callback method.
+
 
 
 
