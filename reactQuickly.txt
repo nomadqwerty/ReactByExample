@@ -449,20 +449,20 @@ window.navigator.geolocation.getCurrentPosition((position)=>{
 //create html text input element. 
 //form of Type input. 
 // creating eventhandler:
-// i: create a method on the classComponent that requires the input(forms). this method is the function that will be called when an event is fired off in the client side.
-// ii: the method recieves a param, the first arg: which is (event)
-// iii: when listening to event for user input. the event object(arg1) passed into our method is the target.value= this holds the value we need to get from the user
+// i: create a method on the classComponent that will act as a callback method to do something when the desired event is emitted. this method is the function that will be called when an event is fired off in the client side.
+// ii: the method recieves a param, the first arg: which is (event): events is an object that holds details about the event.
+// iii: when listening to event for user input. the 'event' object(arg1) passed into our method has the target.value, this holds the value we need to get from the user
 // iv: for the event to be fired off we need to attach a listener to the element that the input would be passed into. once listener is set up we then pass in our method as a callback to the event listener. because its a callback we do not need to call the function, like this.eventMethod() is wrong
 i.e onChange={this.eventMethod}
 // events listeners work as props, special props. ie. onChange, onClick,onSubmit
 
 N.B:- not all event listeners work for some jsx elements.ie: the onChange&onSubmit listener is not avaible of divs, because divs dont change, or submit
 
-// alternate EventListener syntax
+// alternate EventListener jsx syntax
 onChange={(event)=>{single line of code}}, this is for one liners.
 
 // controlled vs uncontrolled component
-// controlled-: refactor compnent, create a state obj with a prop.
+// controlled-: refactor component, create a state obj with a prop.
 // in the method, once event is fired off, add the target.value to the state, create additional 'value' prop on element and pass in the value of the property in state object into it
 
 ///// what exactly is an controlled component?
@@ -473,7 +473,7 @@ what happens in our code?
 4. because we update state with setState the component rerenders.
 5. we then pass user input into the value prop. value attributes in htmls hold the use input. so when a input is passed into value, it overides any data in the input fields
 
-// we follow these steps because. the value is stored in the dom event obj. and any time we want the data we reach into dom:e.target.value. to get the value. but with the controlled step. we store the user input in the state then update the value prop with the input stored in the 
+// we follow these steps because. the value is stored in the dom event obj. and any time we want the data we reach into dom:e.target.value. to get the value. but with the controlled step. we store the user input in the state then update the value prop with the input stored in the state object
 
 // controlled concept, this makes react the primary driver for any data on our app.
 
@@ -484,11 +484,52 @@ what happens in our code?
 
 // 2. create a callback method, to do somthing once submit event is fired off.  call e.preventDefault() in the callback method.
 
+///////This in javascript.
+// when using this in react. javascript somehow refers to 'this' as undefined and not as a pointer or reference to our class/object component.
+// how is this used in a function: this in javascript, refers to the instance. car = new Whip(), car.method(). car in this instance means this.
+// this points to the left side of the '.' operator, ie
+class being{
+	constructor(species){
+  	this.species = species
+
+    // biding the this to the class
+    this.getSpc = this.getSpc.bind(this)
+  }
+  getSpc(){
+  	return this.species
+  }
+}
+
+const creature = new being('human')
 
 
+let alien = {
+	species:'glibGlops',
+  getSpecies: creature.getSpc
+}
+
+alien.getSpecies()
+
+alien.species is actually glibGlops. the 'this' calling the getSpc method is now, alien object. the left hand of the '.' is the reference for this, now alien is the 'this'
+
+one way to fix the bug is to bind the function to the class it self.
+this.getSpc.bind(this)
+another way is to use arrow functions,  because arrow functions dont have a this keyword
+// for short if you to events in react create the event callback with an arrow fucntion, this way this always points to the class
+
+//////////////////////
+// communicating child to parent
+// props are normally passed down to children,
+// but sometimes we may need to send props up to the parent.
+// we do this indirectly. 
+// 1st of we convert our app to a class component. because the data will be passed into the parent component we need to have a variable of fucntion that will store or make use of the data.
+
+// once varaible or method is made on class, we then pass it as a prop object to the child component, then from the child we can update the prop variable or object or call the method with the arg gotten from child. this.prop is the way to access prop obj on a class.
+
+// note:- props in component are jsx props, while some props in jsx are special props, ie the prop onChange on a component is jst a property nothing more, however onChange on a jsx elelment is a property that is used as an event listener, we are fully in control of props on our component but not in jsx. 
 
 
-
+///////////////////////////////////////////
 // how do we fetch data from api
 --2 make outside api calls to fetch data
 
