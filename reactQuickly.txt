@@ -485,9 +485,9 @@ what happens in our code?
 // 2. create a callback method, to do somthing once submit event is fired off.  call e.preventDefault() in the callback method.
 
 ///////This in javascript.
-// when using this in react. javascript somehow refers to 'this' as undefined and not as a pointer or reference to our class/object component.
-// how is this used in a function: this in javascript, refers to the instance. car = new Whip(), car.method(). car in this instance means this.
-// this points to the left side of the '.' operator, ie
+// when using 'this' in react. javascript refers to 'this' as the object that it is called in.
+// so how is this used in a function: because this in javascript refers to the object that it is called in. methods or functions on objects will refer to the object that called the method.
+// for short: this points to the left side of the '.' operator, ie
 class being{
 	constructor(species){
   	this.species = species
@@ -510,9 +510,11 @@ let alien = {
 
 alien.getSpecies()
 
-alien.species is actually glibGlops. the 'this' calling the getSpc method is now, alien object. the left hand of the '.' is the reference for this, now alien is the 'this'
+alien.species is actually glibGlops. the 'this' calling the getSpc method is now, the alien object. the left hand of the '.' is the reference for this, now alien is the 'this'
+// this can cause bugs in javascript. because it basically means 'this' can be overridden by another object.
+// 'this' is loosely bound to the class, and makes overrides possible.
 
-one way to fix the bug is to bind the function to the class it self.
+one way to fix the bug is to bind the function to the class it self. it binds 'this' to the class to prevent overides by another object
 this.getSpc.bind(this)
 another way is to use arrow functions,  because arrow functions dont have a this keyword
 // for short if you to events in react create the event callback with an arrow fucntion, this way this always points to the class
@@ -524,14 +526,32 @@ another way is to use arrow functions,  because arrow functions dont have a this
 // we do this indirectly. 
 // 1st of we convert our app to a class component. because the data will be passed into the parent component we need to have a variable of fucntion that will store or make use of the data.
 
-// once varaible or method is made on class, we then pass it as a prop object to the child component, then from the child we can update the prop variable or object or call the method with the arg gotten from child. this.prop is the way to access prop obj on a class.
+// once object or method is made on class, we then pass it as a prop to the child component, then from the child we can update the prop object or call the method with the arg gotten from child. this.prop is the way to access prop obj on a class.
+// basically by using objects or methods to initialize a prop in the parent and passing it to the child, we can now reassign the prop value to a value gotten in child. and then use it in the parent. we can use objects to also store data from the child in the parent.
 
-// note:- props in component are jsx props, while some props in jsx are special props, ie the prop onChange on a component is jst a property nothing more, however onChange on a jsx elelment is a property that is used as an event listener, we are fully in control of props on our component but not in jsx. 
+// note:- props in component are ordinary props, while some props in jsx are special props, ie the prop onChange on a component is jst a property nothing more, however onChange on a jsx elelment is a property that is used as an event listener, we are fully in control of props on our component but not in jsx. 
+
 
 
 ///////////////////////////////////////////
 // how do we fetch data from api
 --2 make outside api calls to fetch data
+making network request or ajax/api calls is not the job of react.
+to make ajax calls we need to make use of a ajax client this will eneable us to request data from remote servers.
+ajax clients like fetch and axios. we will make use of axios to make the network requests.
+
+axios for get request. the get method has two args, the api we request data from, and an object for crafting http req object. we cant craft it like a complete http req object. httpreq:{
+    Param:{query:'query field'},
+    header:{
+        Ath:'some key'
+    }
+}
+
+
+
+
+
+
 
 // how to show list of records
 --3 display data returned from api ie list of images
