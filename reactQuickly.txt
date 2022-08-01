@@ -384,7 +384,7 @@ window.navigator.geolocation.getCurrentPosition((position)=>{
 
 //////////////////////////////////
 // passing state as props
-// if we have a stand alone comp that we need in the App.
+// if we have a stand alone comp that we need in the App as a prop.
 // 1. we import the comp from the file.
 // 2. we put the component in the render method. to show its content.
 // 3. pass props as usual and consume as usual.
@@ -394,7 +394,7 @@ window.navigator.geolocation.getCurrentPosition((position)=>{
 // tips:
 // always extract logic from the compponent as much as possible.
 
-// we can also make use of the teary operator.
+// we can also make use of the tenary operator.
 // we can also use temp literals inside interpolation sintax
 
 // but instead of using teneray ops we can use a configuration object for the component
@@ -445,7 +445,7 @@ window.navigator.geolocation.getCurrentPosition((position)=>{
 
 //////////////////////////////////////////////
 ////---:we need to get user input. ie. search bar
-//create searchbar class
+//create input class(form,searhBar etc. what ever requires user input)
 //create html text input element. 
 //form of Type input. 
 // creating eventhandler:
@@ -546,6 +546,35 @@ axios for get request. the get method has two args, the api we request data from
         Ath:'some key'
     }
 }
+
+
+// using async with promise like function. this is use to wait for results to return.\
+// if using async await update state in asyn fucntion
+aFunc = async()=>{
+    try{
+        let result = await do something
+        this.setState({value:result})
+
+    }catch(err){
+        return err
+    }
+}
+
+// note if we are expecting a particular type of data set the default state val to the datatype.
+if we expect text, then state.property = ''
+if we expect int, then state.property = 0
+if we expect array, then state.property = []
+if we expect object, then state.property = {}
+
+// default axios funct.
+// this is a default axios object. 
+// used to make default calls. get post etc
+axios.create({
+    baseUrl: 'http://www.thing.com',
+    headers:{
+        Authorization: 'Bearer key'
+    }
+})
 
 
 

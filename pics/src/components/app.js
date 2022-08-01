@@ -1,23 +1,27 @@
 import React from 'react'
-import axios from 'axios'
+import axiosCall from '../api/unSplash'
 import SearchBar from './Searchbar'
 
+
+
 class App extends React.Component{
+    state = {result: []}
+    
     apiCall = async (input)=>{
-        let data = await axios.get(' https://api.unsplash.com/search/photos',{
-            params:{
-                query:input
-            },
-            headers:{
-                Authorization:'Client-ID oducr95UOqhhHjU10oU5uaLofUg0TOhC_yp3rxz1KSI'
-            }
-        })
-        console.log(data)
+        try {
+            let res = await axiosCall(input)
+            console.log(res)
+            this.setState({result: res.data.results})
+        } catch (error) {
+            console.log(error)
+        }
     }
+
     render(){
         return(
             <div className="ui container" style={{marginTop:'10px'}}>
             <SearchBar fetchData={this.apiCall}/>
+            <h1>found:{this.state.result.length}</h1>
             </div>
         )
     }
