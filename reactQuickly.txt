@@ -444,6 +444,7 @@ window.navigator.geolocation.getCurrentPosition((position)=>{
 // how do we handle user input to our app
 
 //////////////////////////////////////////////
+STEP 1
 ////---:we need to get user input. ie. search bar
 //create input class(form,searhBar etc. what ever requires user input)
 //create html text input element. 
@@ -534,6 +535,7 @@ another way is to use arrow functions,  because arrow functions dont have a this
 
 
 ///////////////////////////////////////////
+STEP 2
 // how do we fetch data from api
 --2 make outside api calls to fetch data
 making network request or ajax/api calls is not the job of react.
@@ -566,21 +568,43 @@ if we expect int, then state.property = 0
 if we expect array, then state.property = []
 if we expect object, then state.property = {}
 
-// default axios funct.
-// this is a default axios object. 
-// used to make default calls. get post etc
+// create axios default client
+this is how to create a preconfigured axios instance.
+
 axios.create({
-    baseUrl: 'http://www.thing.com',
+    baseUrl: 'http://localhost',
     headers:{
-        Authorization: 'Bearer key'
+        Authorization: 'Basic auth'
+    }
+})
+
+how to use instance.
+
+axios.HTTPmethod('urlEndPoint',{
+    params:{
+        query:'value'
     }
 })
 
 
-
-
-
-
-
+//////////////////////////////////////////////////////////////////
+STEP 3
 // how to show list of records
 --3 display data returned from api ie list of images
+create module for image display. a component. import component into root comp(app). pass data to component so we can display it.
+
+// use map method to loop over array of data and for each elelment in array, wrap it with a div/desired html element
+
+ie newArrayOfData = arrayofData.map(data=>{<div>data</div>})
+
+
+use of keys in list. keys are a special props in jsx. this helps tell react what it needs to render. ie. if we already have a list of data rendered in the dom already, but a new data needs to be appended to the list. now instead of react rerender the whole list just to include the new data, we can specify key to help tell react 'look there are already elelments in the dom with key 1,2 and 3. so only add the data with key 4'
+
+keys are unique identifyers for elements. keys can be numbers,strings,regExp
+
+keys should be assign to parent element. ie
+<div key="1">
+    <img/>
+</div>
+
+implement keys in jsx

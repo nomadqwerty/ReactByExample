@@ -1,7 +1,8 @@
 import React from 'react'
-import axiosCall from '../api/unSplash'
+// import axiosCall from '../api/unSplash'
+import preCon from '../api/axiosClient'
 import SearchBar from './Searchbar'
-
+import ImageList from './imageList'
 
 
 class App extends React.Component{
@@ -9,8 +10,11 @@ class App extends React.Component{
     
     apiCall = async (input)=>{
         try {
-            let res = await axiosCall(input)
-            console.log(res)
+            let res = await preCon.get('/search/photos',{
+                params:{
+                    query:input
+                }
+            })
             this.setState({result: res.data.results})
         } catch (error) {
             console.log(error)
@@ -21,7 +25,7 @@ class App extends React.Component{
         return(
             <div className="ui container" style={{marginTop:'10px'}}>
             <SearchBar fetchData={this.apiCall}/>
-            <h1>found:{this.state.result.length}</h1>
+            <ImageList images={this.state.result}/>
             </div>
         )
     }
