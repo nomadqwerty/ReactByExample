@@ -591,7 +591,7 @@ axios.HTTPmethod('urlEndPoint',{
 STEP 3
 // how to show list of records
 --3 display data returned from api ie list of images
-create module for image display. a component. import component into root comp(app). pass data to component so we can display it.
+create module for image display. a component. import component into root comp(app). pass data to component as prop so we can display it.
 
 // use map method to loop over array of data and for each elelment in array, wrap it with a div/desired html element
 
@@ -608,3 +608,12 @@ keys should be assign to parent element. ie
 </div>
 
 implement keys in jsx
+
+
+/////////
+reach into dom to get data.
+// when we want to get details of a dom elelment in react we use refs.
+// in js we use document.querySelector(), but in react we make use of the ref system
+// react refs(reference) gives us direct asses to a single dom element displayed.
+// we initialize refs in the constructor function just like state. we then pass the dom elelment into the refs. 
+// we can pass the dom elelment into state, but refs do not change over time. state is used for data that changes overtime
