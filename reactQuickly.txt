@@ -647,4 +647,4 @@ render(){
 
 // a jsx element, will eventually become a dom element, but befor then its jst a jsx tag. the ref gives us the details on a dom element. in other word, before we can get data on an element, the element has to be in the dom, basically it has to mounted in the browser and converted to html.
 
-// note this process can be asynchronous. in the case the element is depending on an external api call. it is good to await the data from the ref and the target element
+// note this process can be asynchronous. in the case the element is depending on an external api call. (async await wont work) so we should use callbacks to get data asynchronously. for callbacks we need an eventListener, to listen for an event that would trigger the callback.
