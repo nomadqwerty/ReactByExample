@@ -614,6 +614,37 @@ implement keys in jsx
 reach into dom to get data.
 // when we want to get details of a dom elelment in react we use refs.
 // in js we use document.querySelector(), but in react we make use of the ref system
-// react refs(reference) gives us direct asses to a single dom element displayed.
+// react refs(reference) gives us direct access to a single dom element displayed.
 // we initialize refs in the constructor function just like state. we then pass the dom elelment into the refs. 
 // we can pass the dom elelment into state, but refs do not change over time. state is used for data that changes overtime
+
+
+// how to create ref.
+// init in constructor
+// assign them variable names, vars should call store react method(react.createRef) the result value enables us to the create refs.
+
+//once created pass them into target jsx elelment, use the ref prop.
+ref={this.refname}
+ie. 
+constructor(props){
+    super(props)
+    this.nameOfVar = react.createRef() 
+    this.state = {height: null}
+}
+
+render(){
+    return(
+        <div ref={this.nameOfVar}></div>
+    )
+}
+
+/// image card 
+// let image card render its self and its images.
+// get elelment data from dom(height data)
+// set image height on state
+// update grow grid row end on css based on the height of each image. dynamically set.
+
+
+// a jsx element, will eventually become a dom element, but befor then its jst a jsx tag. the ref gives us the details on a dom element. in other word, before we can get data on an element, the element has to be in the dom, basically it has to mounted in the browser and converted to html.
+
+// note this process can be asynchronous. in the case the element is depending on an external api call. it is good to await the data from the ref and the target element
