@@ -452,7 +452,7 @@ STEP 1
 // creating eventhandler:
 // i: create a method on the classComponent that will act as a callback method to do something when the desired event is emitted. this method is the function that will be called when an event is fired off in the client side.
 // ii: the method recieves a param, the first arg: which is (event): events is an object that holds details about the event.
-// iii: when listening to event for user input. the 'event' object(arg1) passed into our method has the target.value, this holds the value we need to get from the user
+// iii: when listening to event for user input. the 'event' object(arg1) passed into our method has the target.value and other event properties, this holds the value we need to get from the user
 // iv: for the event to be fired off we need to attach a listener to the element that the input would be passed into. once listener is set up we then pass in our method as a callback to the event listener. because its a callback we do not need to call the function, like this.eventMethod() is wrong
 i.e onChange={this.eventMethod}
 // events listeners work as props, special props. ie. onChange, onClick,onSubmit
@@ -472,10 +472,10 @@ what happens in our code?
 2. callback is called
 3. we update state with the value from the user input.
 4. because we update state with setState the component rerenders.
-5. we then pass user input into the value prop. value attributes in htmls hold the use input. so when a input is passed into value, it overides any data in the input fields
+5. we then pass user input into the value prop. value attributes in htmls hold the initial input value which is then overriden by user input. because we store the uservalue in state and pass same uservalue to value attribute, the initial value will always be what the user passed in. its a cycle.
 
 // we follow these steps because. the value is stored in the dom event obj. and any time we want the data we reach into dom:e.target.value. to get the value. but with the controlled step. we store the user input in the state then update the value prop with the input stored in the state object
-
+// this does nothing more than giving react total control over a componenets data. 
 // controlled concept, this makes react the primary driver for any data on our app.
 
 // handle form submital
@@ -486,8 +486,8 @@ what happens in our code?
 // 2. create a callback method, to do somthing once submit event is fired off.  call e.preventDefault() in the callback method.
 
 ///////This in javascript.
-// when using 'this' in react. javascript refers to 'this' as the object that it is called in.
-// so how is this used in a function: because this in javascript refers to the object that it is called in. methods or functions on objects will refer to the object that called the method.
+// when using 'this' in react. javascript refers to 'this' as the object that it is called on.
+// so how is this used in a function: because this in javascript refers to the object that it is called on. methods or functions on objects will refer to the object that called the method.
 // for short: this points to the left side of the '.' operator, ie
 class being{
 	constructor(species){
@@ -518,16 +518,16 @@ alien.species is actually glibGlops. the 'this' calling the getSpc method is now
 one way to fix the bug is to bind the function to the class it self. it binds 'this' to the class to prevent overides by another object
 this.getSpc.bind(this)
 another way is to use arrow functions,  because arrow functions dont have a this keyword
-// for short if you to events in react create the event callback with an arrow fucntion, this way this always points to the class
+// for short if you are to use events in react, create the event callback with an arrow fucntion, this way this always points to the class this
 
 //////////////////////
 // communicating child to parent
 // props are normally passed down to children,
 // but sometimes we may need to send props up to the parent.
 // we do this indirectly. 
-// 1st of we convert our app to a class component. because the data will be passed into the parent component we need to have a variable of fucntion that will store or make use of the data.
 
-// once object or method is made on class, we then pass it as a prop to the child component, then from the child we can update the prop object or call the method with the arg gotten from child. this.prop is the way to access prop obj on a class.
+
+// create object or method in component, we then pass it as a prop to the child component, then from the child we can update the prop object or call the method with the arg gotten from child. this.prop is the way to access prop obj on a class.
 // basically by using objects or methods to initialize a prop in the parent and passing it to the child, we can now reassign the prop value to a value gotten in child. and then use it in the parent. we can use objects to also store data from the child in the parent.
 
 // note:- props in component are ordinary props, while some props in jsx are special props, ie the prop onChange on a component is jst a property nothing more, however onChange on a jsx elelment is a property that is used as an event listener, we are fully in control of props on our component but not in jsx. 
@@ -624,6 +624,7 @@ reach into dom to get data.
 // assign them variable names, vars should call store react method(react.createRef) the result value enables us to the create refs.
 
 //once created pass them into target jsx elelment, use the ref prop.
+
 ref={this.refname}
 ie. 
 constructor(props){
@@ -648,3 +649,9 @@ render(){
 // a jsx element, will eventually become a dom element, but befor then its jst a jsx tag. the ref gives us the details on a dom element. in other word, before we can get data on an element, the element has to be in the dom, basically it has to mounted in the browser and converted to html.
 
 // note this process can be asynchronous. in the case the element is depending on an external api call. (async await wont work) so we should use callbacks to get data asynchronously. for callbacks we need an eventListener, to listen for an event that would trigger the callback.
+
+
+// test.
+// create app.
+// video app component break down
+// search comps, video list comp, video card comp, video player comp
