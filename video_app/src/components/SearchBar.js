@@ -12,7 +12,6 @@ class SearchBar extends React.Component {
     onInput=(e)=>{
         let userVal = e.target.value
         this.setState({userInput:userVal})
-        console.log(userVal)
     }
     render(){
         return(
