@@ -453,7 +453,7 @@ STEP 1
 // i: create a method on the classComponent that will act as a callback method to do something when the desired event is emitted. this method is the function that will be called when an event is fired off in the client side.
 // ii: the method recieves a param, the first arg: which is (event): events is an object that holds details about the event.
 // iii: when listening to event for user input. the 'event' object(arg1) passed into our method has the target.value and other event properties, this holds the value we need to get from the user
-// iv: for the event to be fired off we need to attach a listener to the element that the input would be passed into. once listener is set up we then pass in our method as a callback to the event listener. because its a callback we do not need to call the function, like this.eventMethod() is wrong
+// iv: for the event to be fired off we need to attach a listener to the jsx element that the input would be passed into. once listener is set up we then pass in our method as a callback to the event listener. because its a callback we do not need to call the function, like this.eventMethod() is wrong
 i.e onChange={this.eventMethod}
 // events listeners work as props, special props. ie. onChange, onClick,onSubmit
 
@@ -479,9 +479,9 @@ what happens in our code?
 // controlled concept, this makes react the primary driver for any data on our app.
 
 // handle form submital
-// 1. attach the onSubmit EventListener to the form elelment so we can handle form submital
+// 1. attach the onSubmit EventListener to the jsx form elelment so we can handle form submital
 
-// N.B- prevent the default page load. this is the default behavior in the browser,when enter is pressed the page reloads because it tries to submit the form automatical. its a default behavior : use e.preventDefault() to prevent page reloads
+// N.B- prevent the default page load. this is the default behavior in the browser,when enter is pressed the page reloads because it tries to submit the form automatically. its a default behavior : use e.preventDefault() to prevent page reloads
 
 // 2. create a callback method, to do somthing once submit event is fired off.  call e.preventDefault() in the callback method.
 
@@ -493,7 +493,7 @@ class being{
 	constructor(species){
   	this.species = species
 
-    // biding the this to the class
+    // binding the this to the class
     this.getSpc = this.getSpc.bind(this)
   }
   getSpc(){
@@ -655,3 +655,6 @@ render(){
 // create app.
 // video app component break down
 // search comps, video list comp, video card comp, video player comp
+
+////////////////////////
+// how to use youtube api.
