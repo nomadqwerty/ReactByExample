@@ -7,7 +7,7 @@ class SearchBar extends React.Component {
     }
     onFormSubmit=(e)=>{
         e.preventDefault()
-        console.log('submitted')
+        this.props.vidSearch(this.state.userInput)
     }
     onInput=(e)=>{
         let userVal = e.target.value
