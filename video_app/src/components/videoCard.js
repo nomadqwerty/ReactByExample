@@ -1,4 +1,5 @@
 import React from 'react'
+import '../components/css/videoCard.css'
 
 class VideoCard extends React.Component {
     constructor(props) {
@@ -8,9 +9,12 @@ class VideoCard extends React.Component {
     } 
     render(){
         const {snippet} = this.props.video
-        return(<div ref={this.ref}>
-            <img src={snippet.thumbnails.medium.url} alt={snippet.title}/>
-            {snippet.title}
+        return(
+        <div ref={this.ref} className="videoCard item">
+            <img className="ui image" src={snippet.thumbnails.medium.url} alt={snippet.title}/>
+            <div className="content">
+                <div className="header">{snippet.title}</div>
+            </div>
         </div>)
     }
 }

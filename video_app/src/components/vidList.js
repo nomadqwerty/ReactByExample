@@ -6,7 +6,7 @@ const vidList = (props)=>{
         return <VideoCard key={i+1} video={video}/>
     })
     return(
-        <div>{videos}</div>
+        <div className="ui relaxed divided list">{videos}</div>
     )
 }
 
