@@ -1,11 +1,12 @@
 import React from 'react'
 import SearchBar from './SearchBar'
 import VidList from './vidList'
+import VideoDetail from './videoDetail'
 import preCon from '../api/youTubeApi'
 class App extends React.Component {
     constructor(props){
         super(props)
-        this.state = {data:[]}
+        this.state = {data:[],selectedVideo:{}}
     }
 
     vidSearch = async (term)=>{
@@ -17,11 +18,16 @@ class App extends React.Component {
         }
     }
 
+    onVideoSelect = (video)=>{
+        this.setState({selectedVideo:video})
+    }
+
     render(){
         return(
         <div className="ui container">
             <SearchBar vidSearch={this.vidSearch}/>
-            <VidList items={this.state.data}/>
+            <VideoDetail videoDetails={this.state.selectedVideo}/>
+            <VidList onVideoSelect={this.onVideoSelect} items={this.state.data}/>
         </div>)
     }
 }

@@ -9,8 +9,9 @@ class VideoCard extends React.Component {
     } 
     render(){
         const {snippet} = this.props.video
+        const {onVideoSelect,video} = this.props
         return(
-        <div ref={this.ref} className="videoCard item">
+        <div onClick={()=>{onVideoSelect(video)}} ref={this.ref} className="videoCard item">
             <img className="ui image" src={snippet.thumbnails.medium.url} alt={snippet.title}/>
             <div className="content">
                 <div className="header">{snippet.title}</div>
