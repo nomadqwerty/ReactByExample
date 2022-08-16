@@ -690,3 +690,4 @@ hooks system gives us the ability to make fully usefull components without using
 // with these primitive hooks we can create costum code to perfom repeated tasks. 
 
 // useState()
+// react fragments let you wrap up jsx like div,but the react fragments arent added to the dom, but the div is.
