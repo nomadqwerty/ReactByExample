@@ -680,3 +680,13 @@ const VideoDetail = ({ videoDetails }) => {
     </div>
   );
 };
+
+//////////////////////////////////////////////////////////////////////////////// react hooks
+hooks system gives us the ability to make fully usefull components without using classes.
+// it simulates the state system in ClassBasedComp(CBC) with useState functions
+// it simulates the ref system in ClassBasedComp(CBC) with useRef functions
+// it simulates the Lifecycle methods in ClassBasedComp(CBC) with useEffect functions
+
+// with these primitive hooks we can create costum code to perfom repeated tasks. 
+
+// useState()
