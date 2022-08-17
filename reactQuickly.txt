@@ -682,12 +682,12 @@ const VideoDetail = ({ videoDetails }) => {
 };
 
 //////////////////////////////////////////////////////////////////////////////// react hooks
-hooks system gives us the ability to make fully usefull components without using classes.
+hooks system gives us the ability to make fully usefull func components without using classes.
 // it simulates the state system in ClassBasedComp(CBC) with useState functions
 // it simulates the ref system in ClassBasedComp(CBC) with useRef functions
 // it simulates the Lifecycle methods in ClassBasedComp(CBC) with useEffect functions
 
-// with these primitive hooks we can create costum code to perfom repeated tasks. 
+// *with these primitive hooks we can create costum code to perfom repeated tasks. 
 
 // react fragments let you wrap up jsx like div,but the react fragments arent added to the dom, but the div is.
 
@@ -695,19 +695,19 @@ hooks system gives us the ability to make fully usefull components without using
 
 ///////////////////////////////////////////////////////////////////////////////////
 // use state is a primitive react hook for FCs (functional components)
-it gives use access to the state system with out using ClassBasedComps
+it gives us access to the state system with out using ClassBasedComps
 // useState(): functional state sytem
 // to set state import the useState fucntion from react.
 
-with the array destructuring syntax [], [valueName,setvalueName] = useState(null), this is to initialize the state system.
+with the array destructuring syntax [], [valueName,setvalueNameFn] = useState(null), this is to initialize the state system.
 
 // in the array the first var in the [] syntax refers to our state property(the one whos value is to change over time). the second var in the [] syntax is a setter function that when called will update our state and rerender the app, just like this.setState({}) in ClassBasedComp
 
 // the useState(), is a function that is used to initialize our state.
 
-// it takes one arg which we be the default or initial value for our state property.
+// it takes one arg which will be the default or initial value for our state property.
 
-then to update state use setvalueName(valueToSet)
+then to update state use setvalueNameFn(valueToSet)
 
 then to reference state values use {valueName}
 
@@ -715,16 +715,19 @@ this process is needed to use every piece of state. if we need 3 different piece
 
 
 // step 1 
-let [value1,setValue1] = useState(null)
-let [value2,setValue2] = useState('')
-let [value3,setValue3] = useState(0)
+let [value1,setValue1Fn] = useState(null)
+let [value2,setValue2Fn] = useState('')
+let [value3,setValue3Fn] = useState(0)
 
 // step 2
-setValue1(10)
-setValue2('stringVALE')
-setValue3(5)
+setValue1Fn(10)
+setValue2Fn('stringVALE')
+setValue3Fn(5)
 
 // step 3
 h1 {value1}
 h1 {value2}
 h1 {value3}
+
+
+//

@@ -2,16 +2,16 @@ import React, { useState } from "react";
 
 const Accordion = (props) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
+  console.log(selectedIndex);
   let onTitleclick = (index) => {
     setSelectedIndex(index);
-    console.log(useState);
   };
-
   let list = props.items.map((item, i) => {
+    let setSelect = i === selectedIndex ? "active" : "";
     return (
       <React.Fragment key={item.title}>
         <div
-          className="title active"
+          className={`title ${setSelect}`}
           onClick={() => {
             onTitleclick(i);
           }}
@@ -19,7 +19,7 @@ const Accordion = (props) => {
           <i className="dropdown icon"></i>
           {item.title}
         </div>
-        <div className="content active">
+        <div className={`content ${setSelect}`}>
           <p>{item.content}</p>
         </div>
       </React.Fragment>
