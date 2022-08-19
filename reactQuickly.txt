@@ -759,3 +759,32 @@ useEffect(cb)
 
 3. When the component is rerendered for the first time, when ever again it rerenders and when ever some piece of data has changed.
 useEffect(cb,[pieceOfData])
+
+let [x,setX] = useState('')
+
+
+cant use async in useEffect, 
+this wont work
+// useEffect(async()=>{
+    let result = await some Stuff
+    setX(result)
+},[x])
+but can use async in a function nested.useEffect()
+this will work
+useEffect(()=>{
+    //create function
+    let somePromise = async()=>{await some stuff}
+    //call function
+    somePromise()
+
+    //ie2,immiediate executables
+    (async(){
+        await some stuff
+    })()
+
+    //ie3 use promise then.catch() methods 
+    Promise.resolve().then().catch()
+})
+
+wiki Api
+en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=programming
