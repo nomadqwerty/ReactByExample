@@ -707,7 +707,7 @@ with the array destructuring syntax [], [valueName,setvalueNameFn] = useState(nu
 
 // it takes one arg which will be the default or initial value for our state property.
 
-then to update state use setvalueNameFn(valueToSet)
+then to update state use setvalueNameFn(valueToSet)(setterFn)
 
 then to reference state values use {valueName}
 
@@ -735,9 +735,9 @@ h1 {value3}
 // allows FCs to be able to use something like lifeCycle methods on classBasedComponents.
 // useEffect is configured to run in 3 different scenarios.
 
-1. When the component is rerendered for the first time only.
-2. When the component is rerendered for the first time and when ever again it rerenders.
-3. When the component is rerendered for the first time, when ever again it rerenders and when ever some piece of data has changed
+1. When the component is rendered for the first time only. like comp did mount
+2. When the component is rendered for the first time and when ever again it rerenders.
+3. When the component is rendered for the first time, when ever again it rerenders and when ever some piece of data has changed
 
 
 // use useEffect(),
@@ -750,20 +750,20 @@ const Funccomp = ()=>{
 }
 
 // use useEffect and configure. 
-2. useEffect() takes two args. the callback and the scenerio that useEffect() should run.(any of the 3 stated above)
-1. When the component is rerendered for the first time only.
+2. useEffect() takes two args. the callback that useEffect() should run and in the scenerio were useEffect should be called.(any of the 3 stated above)
+1. When the component is rendered for the first time only.
 useEffect(cb,[])
 
-2. When the component is rerendered for the first time and when ever again it rerenders.
+2. When the component is rendered for the first time and when ever again it rerenders.
 useEffect(cb)
 
-3. When the component is rerendered for the first time, when ever again it rerenders and when ever some piece of data has changed.
+3. When the component is rendered for the first time, when ever again it rerenders and when ever some piece of data has changed.
 useEffect(cb,[pieceOfData])
 
 let [x,setX] = useState('')
 
 
-cant use async in useEffect, 
+cant mark useEffectFn as async, 
 this wont work
 // useEffect(async()=>{
     let result = await some Stuff
