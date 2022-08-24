@@ -785,6 +785,23 @@ useEffect(()=>{
     //ie3 use promise then.catch() methods 
     Promise.resolve().then().catch()
 })
+// in the useEffect function the only value we can return is a function. this function is used by react when ever useEffect is called(either of the 3 scenarios)
+// the function serves as a cleanup/maintainance to do or set something when ever useEffect is called. after the first call the returned function wont execute(because its the firsttime), but the second time and onward its then called by react and it will be executed before the callback passsed into useEffect()
+// i.e
+useEffect(()=>{
+    // do something
 
+    return ()=>{
+        // do some other thing
+    }
+},[state])
+
+
+////////////////////////////////////////////////
 wiki Api
 en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=programming
+
+// turn a html text to jsx, if we recieve html as a response, we can convert html text to jsx. but it is risky. because malicious javascript can be executed(xss). 
+// use <element dangerouslySetInnerHTML={{__html:html text}}></element> 
+// this leaves use open for xss attacks.
+

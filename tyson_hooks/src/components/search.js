@@ -19,12 +19,19 @@ const Search = () => {
       setResults(data.query.search);
     };
 
-    const searchTimer = setTimeout(() => {
-      if (term !== "") {
-        search();
-      }
-    }, 1000);
-    console.log(searchTimer);
+    if (term && !results.length) {
+      search();
+    } else {
+      const searchTimer = setTimeout(() => {
+        if (term !== "") {
+          search();
+        }
+      }, 1000);
+
+      return () => {
+        clearTimeout(searchTimer);
+      };
+    }
   }, [term]);
 
   //
