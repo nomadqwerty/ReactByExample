@@ -805,3 +805,19 @@ en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearc
 // use <element dangerouslySetInnerHTML={{__html:html text}}></element> 
 // this leaves use open for xss attacks.
 
+
+
+
+// useEffect() warnings
+the depency warning happens when we reference a piece of state that is added into the second arg.
+// the useEffect requires any state referenced in its scope to be in the second arg.
+
+useEffect(()=>{
+    console.log(state)
+    console.log(someState)
+    console.log(someOtherState)
+
+    // like this any state referenced should be in the array
+},[state,someState,someOtherState])
+
+// this can cause bugs, because useEffect would rerender anytime either of the pieces gets updated, that mean multi uneccessary function calls, or api calls, or numerous operations.
