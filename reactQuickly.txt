@@ -785,28 +785,17 @@ useEffect(()=>{
     //ie3 use promise then.catch() methods 
     Promise.resolve().then().catch()
 })
-// in the useEffect function the only value we can return is a function. this function is used by react when ever useEffect is called(either of the 3 scenarios)
-// the function serves as a cleanup/maintainance to do or set something when ever useEffect is called. after the first call the returned function wont execute(because its the firsttime), but the second time and onward its then called by react and it will be executed before the callback passsed into useEffect()
+// in the useEffect function the only value we can return is a function. this function is used by react when ever useEffect is called(either of the 2 continous scenarios(useEffect(()=>{}), useEffect(()=>{},[state]) ))
+
+// the function serves as a cleanup/maintainance fn to do or set something when ever useEffect is called. after the first call the returned function wont execute(because its the firsttime), but the second time and onward its then called by react and it will be executed before the callback passed into useEffect().
 // i.e
 useEffect(()=>{
-    // do something
+    2. // do something
 
-    return ()=>{
+    1. return ()=>{
         // do some other thing
     }
 },[state])
-
-
-////////////////////////////////////////////////
-wiki Api
-en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=programming
-
-// turn a html text to jsx, if we recieve html as a response, we can convert html text to jsx. but it is risky. because malicious javascript can be executed(xss). 
-// use <element dangerouslySetInnerHTML={{__html:html text}}></element> 
-// this leaves use open for xss attacks.
-
-
-
 
 // useEffect() warnings
 the depency warning happens when we reference a piece of state that is added into the second arg.
@@ -821,3 +810,15 @@ useEffect(()=>{
 },[state,someState,someOtherState])
 
 // this can cause bugs, because useEffect would rerender anytime either of the pieces gets updated, that mean multi uneccessary function calls, or api calls, or numerous operations.
+
+////////////////////////////////////////////////
+wiki Api
+en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=programming
+
+// turn a html text to jsx, if we recieve html as a response, we can convert html text to jsx. but it is risky. because malicious javascript can be executed(xss). 
+// use <element dangerouslySetInnerHTML={{__html:html text}}></element> 
+// this leaves use open for xss attacks.
+
+
+
+
