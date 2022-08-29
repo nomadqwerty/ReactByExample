@@ -821,7 +821,43 @@ en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearc
 
 
 ////////////////////////////////////////////////////////////////////
-// useRef
+// event bubbling.
+// to understand this we need to understand what happens when an event get fired of in an elelment.
+
+// there are three phases that the event goes through
+// 1. capturing phase.
+// 2. target phase 
+// 3. bubbling phase.
+
+// (caputuring)first when an event is fired, the event starts from the top most parent element, and then it travels down the dom tree.
+// second as the event travels down in the capturing phase the event would then stop at the target element(the element that fired the event) and then execute the callback attached to the listener(targeting)
+// third after the listener callback is executed, the event than tarvels back up the dom tree, back to the top most parent element(bubbling). back to its origin.
+
+// now note that the as the event travels up and down the dom tree, if another element is listening for the same event it will also be executed.
+
+<div onClick={}>
+    <h1 onClick={}></h1>
+</div>
+
+both the div and h1 element have the onClick event listeners attached to them. if the h1 is clicked, 1st the callback on the h1 will be executed, then as the event goes up the dom tree it would also stop at the div and execute the callback attached to the div elelment too. this is the bubbling, the event can also be executed dowards in the capturing phase.
+
+// in the target phase, the are two properties on the event object.
+// 1. the target
+// 2. the currentTarget
+
+// the target points to the element that fired the event. the target does not change as the event bubbles up. ie, if the h1 fired the event it will be the target, even when the event reaches the div the target remains the same(h1), but the currentTarget will change based on the other elements that listens to the event.
+
+//NB in react we can set manual event listeners using dom api. document.body.addEventListener()
+
+// dom api addEventListener()'s have some sort of precedence over react event listeners. this is means dom event listeners will get executed first before react event listeners.
+
+//useRef
+// useRef is quite simple to use. 
+// step 1 import useRef jsut like useState, useEffect
+// initialize useRef and store in variable.
+// ie, let ref = useRef()
+// pass ref variable to the target element ref prop.
+<div ref={ref}></div>
 
 
 

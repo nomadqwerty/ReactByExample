@@ -1,8 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 let DropDown = ({ options, selected, onSetSelected }) => {
   let [active, setActive] = useState("");
   let [trans, setTrans] = useState("");
+  let ref = useRef();
+  useEffect(() => {
+    document.body.addEventListener(
+      "click",
+      (e) => {
+        if (ref.current.contains(e.target)) {
+          return;
+        }
+        setActive("");
+        setTrans("");
+      },
+      { capture: true }
+    );
+  }, []);
 
   useEffect(() => {}, [selected, active, trans]);
 
@@ -34,7 +48,7 @@ let DropDown = ({ options, selected, onSetSelected }) => {
     );
   });
   return (
-    <div className="ui form">
+    <div ref={ref} className="ui form">
       <div className="field">
         <label className="label">pick a color</label>
         <div
