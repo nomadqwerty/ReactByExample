@@ -826,20 +826,20 @@ en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearc
 
 // there are three phases that the event goes through
 // 1. capturing phase.
-// 2. target phase 
+// 2. targeting phase 
 // 3. bubbling phase.
 
-// (caputuring)first when an event is fired, the event starts from the top most parent element, and then it travels down the dom tree.
-// second as the event travels down in the capturing phase the event would then stop at the target element(the element that fired the event) and then execute the callback attached to the listener(targeting)
+// (caputuring)first when an event is fired, the browser creates an event object it then passes it to the top most parent element(body tag), the event starts from the top most parent element, and then it travels down the dom tree.
+// second as the event travels down the dom tree in the capturing phase the event would then stop at the target element(the element that fired the event) and then execute the callback attached to the listener(targeting)
 // third after the listener callback is executed, the event than tarvels back up the dom tree, back to the top most parent element(bubbling). back to its origin.
 
-// now note that the as the event travels up and down the dom tree, if another element is listening for the same event it will also be executed.
+// now note that as the event travels up and down the dom tree, if another element is listening for the same event it will also be executed.
 
 <div onClick={}>
     <h1 onClick={}></h1>
 </div>
 
-both the div and h1 element have the onClick event listeners attached to them. if the h1 is clicked, 1st the callback on the h1 will be executed, then as the event goes up the dom tree it would also stop at the div and execute the callback attached to the div elelment too. this is the bubbling, the event can also be executed dowards in the capturing phase.
+both the div and h1 element have the onClick event listeners attached to them. if the h1 is clicked, 1st the callback on the h1 will be executed, then as the event goes up the dom tree it would also stop at the div and execute the callback attached to the div elelment onClick listener too. this is the bubbling, the event can also be executed dowards in the capturing phase.
 
 // in the target phase, the are two properties on the event object.
 // 1. the target
@@ -852,12 +852,23 @@ both the div and h1 element have the onClick event listeners attached to them. i
 // dom api addEventListener()'s have some sort of precedence over react event listeners. this is means dom event listeners will get executed first before react event listeners.
 
 //useRef
+// ref is used to get an object containing information about a soecific element.
 // useRef is quite simple to use. 
 // step 1 import useRef jsut like useState, useEffect
 // initialize useRef and store in variable.
 // ie, let ref = useRef()
 // pass ref variable to the target element ref prop.
+let component = ()=>{
 <div ref={ref}></div>
 
+}
 
+// nb the element's detail object stored in the ref variable, it's only avaible if the component displaying the element exist in the browser's dom.
+// i.e if the component containing the div is no longer in the dom/ or body element the ref variable will be undefined, meaning the detail object for the element(div) will no longer be stored in the ref. this can cause some bugs in the app. for exeample when we refer to the ref variable and its undefined, it will raise a error.
 
+1
+// solve this bug by using optional chaining, ie. ref.current?.property
+exaple ref.current?.contains() if thid method is called an ref is undefined then it wont raise the error.
+
+2
+// we can also remove the eventListener from the dom. in the useEffect return fn
