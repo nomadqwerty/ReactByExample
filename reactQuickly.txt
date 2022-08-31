@@ -872,3 +872,7 @@ exaple ref.current?.contains() if thid method is called an ref is undefined then
 
 2
 // we can also remove the eventListener from the dom. in the useEffect return fn
+
+
+///translate api key 
+AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM
