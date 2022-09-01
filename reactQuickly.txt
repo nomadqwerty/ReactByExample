@@ -876,3 +876,12 @@ exaple ref.current?.contains() if thid method is called an ref is undefined then
 
 ///translate api key 
 AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM
+
+//////
+// navigation.
+// basic. this type of routing is basic. it makes use of the window.location object, in the object there is a pathname property. it specifes the current route ie. pathname of 127.0.0.1/:3000/aPathName, will be '/aPathName'
+//with this value we can create a function that conditionally returns a component based on the pathname property.
+
+if(window.location.pathname === '/items'){
+    return <Items/>
+}

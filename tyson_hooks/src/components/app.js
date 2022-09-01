@@ -33,10 +33,10 @@ const options = [
     color: "blue",
   },
 ];
-const App = () => {
-  let [selected, setSelected] = useState(options[0]);
-  let [toggle, setToggle] = useState(true);
 
+const App = () => {
+  var [selected, setSelected] = useState(options[0]);
+  let [toggle, setToggle] = useState(true);
   return (
     <div>
       <button
@@ -46,19 +46,34 @@ const App = () => {
       >
         Toggle
       </button>
-      <Translate />
+      {/* <Translate /> */}
       {/* {toggle ? (
         <DropDown
-          options={options}
-          onSetSelected={setSelected}
-          selected={selected}
+        options={options}
+        onSetSelected={setSelected}
+        selected={selected}
         />
       ) : null} */}
       <br></br>
-      {/* <Accordion items={items} /> */}
-      {/* <Search /> */}
+      {pathFunc(pathName)}
     </div>
   );
+};
+let pathName = window.location.pathname;
+
+let pathFunc = (path) => {
+  if (path === "/") {
+    return <Accordion items={items} />;
+  }
+  if (path === "/search") {
+    return <Search />;
+  }
+  if (path === "/dropdown") {
+    return <DropDown />;
+  }
+  if (path === "/translate") {
+    return <Translate />;
+  }
 };
 
 export default App;
