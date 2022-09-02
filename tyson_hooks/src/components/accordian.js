@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const Accordion = (props) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
-  console.log(selectedIndex);
   let onTitleclick = (index) => {
     setSelectedIndex(index);
   };

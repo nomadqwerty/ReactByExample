@@ -3,6 +3,8 @@ import Accordion from "./accordian";
 import Search from "./search";
 import DropDown from "./dropDown";
 import Translate from "./translate";
+import Router from "./route";
+import Header from "./header";
 
 const items = [
   {
@@ -39,6 +41,7 @@ const App = () => {
   let [toggle, setToggle] = useState(true);
   return (
     <div>
+      <Header />
       <button
         onClick={() => {
           setToggle(!toggle);
@@ -46,34 +49,27 @@ const App = () => {
       >
         Toggle
       </button>
-      {/* <Translate /> */}
-      {/* {toggle ? (
+      <Router route={"/translate"}>
+        <Translate />
+      </Router>
+      <Router route={"/search"}>
+        <Search />
+      </Router>
+      <Router route={"/dropdown"}>
         <DropDown
-        options={options}
-        onSetSelected={setSelected}
-        selected={selected}
+          options={options}
+          onSetSelected={setSelected}
+          selected={selected}
+          label={"color"}
         />
-      ) : null} */}
+      </Router>
+      <Router route={"/"}>
+        <Accordion items={items} />
+      </Router>
+
       <br></br>
-      {pathFunc(pathName)}
     </div>
   );
-};
-let pathName = window.location.pathname;
-
-let pathFunc = (path) => {
-  if (path === "/") {
-    return <Accordion items={items} />;
-  }
-  if (path === "/search") {
-    return <Search />;
-  }
-  if (path === "/dropdown") {
-    return <DropDown />;
-  }
-  if (path === "/translate") {
-    return <Translate />;
-  }
 };
 
 export default App;
