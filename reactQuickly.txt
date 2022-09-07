@@ -885,3 +885,14 @@ AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM
 if(window.location.pathname === '/items'){
     return <Items/>
 }
+
+
+/////////////////////////////////////////////////
+// customhooks
+costum hooks do not mean we are to create a new hook, like make our own useEffect hook, NO!. custom hooks is just a way to make using hooks and component logic more reuseable. this does not refer to jsx in the component. this means the basic logic of the component. ie like fetching data to update state and to rerender app when state has changed. costum hooks are made to make use of primitive hooks more reuseable.
+
+// 4 step process to create costum hooks
+// 1. identify the purpose of each line of code and how other pieces of code relate to it.
+2. identify the required input for the function to work with.
+3. identify the needed output that the function should return.
+4. extract all the code into a separate function that recieves the input and returns the output.
