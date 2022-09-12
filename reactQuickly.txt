@@ -896,3 +896,26 @@ costum hooks do not mean we are to create a new hook, like make our own useEffec
 2. identify the required input for the function to work with.
 3. identify the needed output that the function should return.
 4. extract all the code into a separate function that recieves the input and returns the output.
+
+//////////////////////
+// deploy react app. 
+// react app is baically a bunch of static files(files that can be stored in a folder)
+// it doesnot require a vm to host because it doesnt need a server to execute code.
+// it is afffordable
+
+
+////////////////////////////////////////////////////////////////////////////
+//// redux lib
+this library is made to make state management in apps easy. it is not specifically for react but it will help a whole lot when building react apps. 
+
+// redux stages.
+1. action Creator- this is like initialize an object.(in the redux analogy of the insurance company, action creator is like the user briging in his signup form or claim form, he creates the form(action))
+
+2. Action- this is the object(form) it self. it contains the type, and payload(in the redux analogy of the insurance company, action is like the form and its purpose, either to sign up or to make a claim)
+
+3. dispatch- this is a function that makes copies of the object(form) and distributes it to specific places in redux(in the redux analogy of the insurance company, it is like the front desk personel that takes the form and hands it out to the departments)
+
+4. reducers- this function takes in the action(form) objects looks at the type and updates its data. it is like little slices of state. concerned with only the data useful to it.(in the redux analogy of the insurance company, when the departments take in the form and processes it, ie. the polices dept will take in the sign up the user and update the storage book of users to include the new user)
+
+5. state- this stores all the reducers(little slices of state to make a whole state) data. (in the redux analogy of the insurance company, where all departments data is stored)
+
