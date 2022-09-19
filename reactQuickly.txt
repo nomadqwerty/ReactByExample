@@ -915,7 +915,24 @@ this library is made to make state management in apps easy. it is not specifical
 
 3. dispatch- this is a function that makes copies of the object(form) and distributes it to specific places in redux(in the redux analogy of the insurance company, it is like the front desk personel that takes the form and hands it out to the departments)
 
-4. reducers- this function takes in the action(form) objects looks at the type and updates its data. it is like little slices of state. concerned with only the data useful to it.(in the redux analogy of the insurance company, when the departments take in the form and processes it, ie. the polices dept will take in the sign up the user and update the storage book of users to include the new user)
+4. reducers- this function takes in the action(form) objects looks at the type and updates its data. it is like little slices of state. concerned with only the data useful to it.(in the redux analogy of the insurance company, when the departments take in the form and processes it, ie. the polices dept will take in the sign up the user and update the storage book of users to include the new user)( // in reducers avoid modifying existing data Structures, intsead create new one, and always return a value). reducers takes a piece of state modifies it based on the action and returns the updated piece of state. reducers accept accumulation and a value and returns a new accumulation. it reduces a list of values into a single value.
 
 5. state- this stores all the reducers(little slices of state to make a whole state) data. (in the redux analogy of the insurance company, where all departments data is stored)
 
+// redux :
+combineReducers: creates an object which stores a comnination of all our reducer functions.
+createStore: this is the main redux function. the store represents our state and it reducers and a dispatcher for dispatching actions to be handled by our reducers.
+
+redux flow summary:
+// to update the state with redux
+1 actionCreates action
+2 action gets fed to dispatcher
+3, dispatcher makes copies of the action(obj) and sends it to all our reducer functions
+4 reducers update state based on the action(object) conditions
+5 state gets updated and waits for future updates
+
+// new project
+start new project songs
+import redux react-redux
+
+do basic app clean up and settings.
