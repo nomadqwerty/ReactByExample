@@ -1,5 +1,6 @@
 const { combineReducers, createStore } = require("redux");
 
+//
 const actionCreator = (kind, name, amount = 0) => {
   return {
     type: kind,
@@ -10,6 +11,7 @@ const actionCreator = (kind, name, amount = 0) => {
   };
 };
 
+// reducer
 const claims = (oldClaims = [], action) => {
   if (action.type == "CREATE_CLAIM") {
     if (action.payload.name) {

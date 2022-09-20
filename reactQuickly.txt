@@ -928,11 +928,26 @@ redux flow summary:
 1 actionCreates action
 2 action gets fed to dispatcher
 3, dispatcher makes copies of the action(obj) and sends it to all our reducer functions
-4 reducers update state based on the action(object) conditions
-5 state gets updated and waits for future updates
+4 reducers update state based on the action(object) conditions, and passes new data into general state object
+
+5 the general state object holds all the updated state and it waits for future updates to state
+
+// only modify state with a store disatcher and an action, we cant modify them directly from the reducers of the combineReducers function. only update state from the store
 
 // new project
 start new project songs
 import redux react-redux
 
 do basic app clean up and settings.
+
+// react uses state to store and update pieces of state.
+// in redux we use reducers instead, reducer kind of work like the react useState(), it holds the state and has the function to update the state like its own setState() function. reducers is a function it self, it holds the state and accepts an action that will tell the reducer how to change the state.
+
+// the action creato fn is meant the give us an action that we give to the reducer.
+
+///////////////////
+/// react redux
+// provider componenet
+// connect component
+
+// mapStateToProps
