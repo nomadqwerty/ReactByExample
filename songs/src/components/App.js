@@ -1,5 +1,6 @@
 import React from "react";
 import { selectSong } from "../actions";
+import Details from "./songsDets";
 
 //
 import SongList from "./SongList";
@@ -12,6 +13,7 @@ const App = () => {
           <SongList />
         </div>
       </div>
+      <Details />
     </div>
   );
 };
