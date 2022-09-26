@@ -27,6 +27,7 @@ const Search = () => {
           srsearch: debouncedTerm,
         },
       });
+      console.log(data.query.search[3].title);
       setResults(data.query.search);
     };
 

@@ -947,7 +947,54 @@ do basic app clean up and settings.
 
 ///////////////////
 /// react redux
-// provider componenet
-// connect component
+// provider componenet- the provider comp is a component avaible on the react-redux lib, the provider is meant to parent all our app components
+, 1st by wrapping the App component(like providing our App as a comp prop to the provider)
+// the provider accepts the redux store(dispatcher,reducers and state) as a prop. and this makes the store also avaible to our App comp
+ie. <Provider store={createStore(CombinedReducers)}> <App/> </Provider>
 
-// mapStateToProps
+// connect component- the connect comp is a component avaible on the react-redux lib, the connect is a component that works hand in hand with the provider, the provider holds the whole redux store, but the connect doesnot. so react-redux makes it possible for the connect comp to react into the store and grab the state. 
+i.e the whole purpose of the connect comp is to get the store from the provider  and pass it as a prop to any child comp that needs it
+
+// make use of connect. 
+1, create a fucntion, this function is made to accept the state that the connect brings from the provider. mapStateToProps = (state)=>{return state}
+
+2. after creating the function, pass it into the connect comp as an arg
+i.e- connect(mapStateToProps),
+
+3. after passing in the function argument to connect when connect gets invoked it returns another function that accepts the component that needs the state. this will then make the state avaible in our component.
+i.e- connect(mapStateToProps)(aComponent). like this
+
+
+// mapStateToProps- function that wil recieve state from provider and pass to specified Component, and tells our component any time state changes
+
+// react-redux makes use of dispatchers in a way that the developer wouldnt call it as usual in a redux app. instead the actionCreator is passed as a second arg into the connect fucntion. nb actionCreator should be wrapped in an object
+ie connect(mapStateToProps,{actionCreator})(aComponent) 
+// just like connect makes state avaible it also makes dispatchers avaible by passing in the actionCreator as the second arg
+
+// visit jsonplaceholder api, go to resources
+
+/// make api call in redux app
+
+// redux async errors: creating async actionsCreators
+Error: Actions must be plain objects. Instead, the actual type was: 'Promise'. this error comes from returning special(request Objects) objects in an actionCreator. redux uses Plain Objects so return any thing other than plain objects will cause the above error 
+
+also error can arise from async awaiting api calls. under the hood the async function will returns a response object and not a regular object.
+and if we do not use async await we get a promise. but our action creator and dispacther and state update is very synchronous in execution, this means before promises are settle state is already updated. we need a way to wait for the async ops to complete before updating state. to avoid this race condition, we make use of middlewares
+, this are regular functions that sit between the dispacther and the reducer. so instead of actions to be dispatched into reducers synchronous, the middle stands between them. the middler can manipulate the action in many ways before sending the action to the reducer to update state.
+
+// a common middle ware is redux thunk. redux thunk is used as middleware function. it works when action are functions and not objects. when actions are functions redux thunk calls the function and adds a dispatcher and getState funcs as args to the function which makes it possible to manually call the dispatch fucntion and getState
+
+// wire up middlewares 
+// with the help of the redux applyMiddleware function we can wire up middlewares to our apps.
+// use applyMiddleware function as the second argument to the createStore function. ie createStore(reducers, applyMiddleware(thunk))
+
+// async await can now be used with redux thunk with out errors. redux thunk is a middleware and doesnt directly return anything to the reducer. instead we are the ones who dispatch the action object manually, so we can wait for async ops to complete and then return an action object.
+ie fetchData = () => {
+  return async (dispatch,getState) => {
+    const res = await jsonplaceholder().get("/post");
+    dispatch({
+      type: "API_CALL",
+      payload: res,
+    });
+  };
+};
