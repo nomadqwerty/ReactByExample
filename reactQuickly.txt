@@ -998,3 +998,21 @@ ie fetchData = () => {
     });
   };
 };
+
+///////////
+reducers
+1 always return a value except undefined, when redux runs for the first time(initializes) it runs our reducers and if it returns undefined it will error out, even after initializing never return undefined.
+
+2. a reducer accepts two args, the previous state(after initialize) and the action. ie if after initialization we return an array, the next time we call the reducer the returned array will be an arguement.
+i.e const reduce = (state=null,action)=>{
+    if(action){
+        return []
+    }
+}
+reduce(null, action)
+// the second time calling reduce Fn, the new state value will be the returned array
+i.e reduce([],action)
+
+3. reducers are pure. a reducer should not return values from operations outside its scope, it should not reach to external apis(DOM,FS,Axios) to return data, the only data it should return is the result of the operation perform on the passed args, state and action.
+
+4. do not mutate the state arg, instead create and return new data if operation where performed on the state. do not perform operations directly to the state. bad practice: keep in mind mutating old state wont emitted errors, but the reason to not mutate the state is because redux wont be able to tell if state has been updated, especially if state is a reference type(array/objects), because when checking for equality in reference, the values are not compared rather it is the location in memory. so if redux tests and sees the state still has the same memory, it will assume the state was not changed, even if it was. so primitive type state(bool,number,symbs,strings,bigInt) can be updated directly , but not reference type state(objects, arrays, maps, sets)
