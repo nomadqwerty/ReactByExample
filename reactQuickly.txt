@@ -1000,7 +1000,7 @@ ie fetchData = () => {
 };
 
 ///////////
-reducers
+reducers rules
 1 always return a value except undefined, when redux runs for the first time(initializes) it runs our reducers and if it returns undefined it will error out, even after initializing never return undefined.
 
 2. a reducer accepts two args, the previous state(after initialize) and the action. ie if after initialization we return an array, the next time we call the reducer the returned array will be an arguement.
