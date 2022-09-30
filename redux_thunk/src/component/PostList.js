@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchData } from "../actions";
+import User from "./Users";
 
 const PostList = ({ fetchData, posts }) => {
   useEffect(() => {
@@ -10,7 +11,6 @@ const PostList = ({ fetchData, posts }) => {
       console.log(error);
     }
   }, [fetchData]);
-
   const list = posts.map((post, i) => {
     return (
       <div key={i}>
@@ -20,6 +20,7 @@ const PostList = ({ fetchData, posts }) => {
             <h2 className="">{post?.title}</h2>
             <p className="">{post?.body}</p>
           </div>
+          <User ID={posts[i]?.userId} />
         </div>
       </div>
     );

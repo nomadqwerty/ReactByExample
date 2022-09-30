@@ -1,17 +1,9 @@
 import { combineReducers } from "redux";
-import { posts } from "./postReducer";
-
-const reducer1 = (dataList = [], action) => {
-  return [];
-};
-const reducer2 = () => {
-  return [];
-};
+import { posts, users } from "./postReducer";
 
 const reducers = combineReducers({
-  reducer1: reducer1,
-  reducer2: reducer2,
   posts: posts,
+  users: users,
 });
 
 export default reducers;
