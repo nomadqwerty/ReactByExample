@@ -1,5 +1,7 @@
 // used for displaying components
 
+// run react with https ($env:HTTPS = "true") -and (npm start)
+
 // in these five steps
 // 1. import react lib dom 
 // why two libraries?
@@ -14,7 +16,7 @@ import ReactDOM from 'react-dom/client'
 const el = document.getElementById('root')
 
 // 3. take control of the elelment
-// tell reactDom to show are app in the browser 
+// tell reactDom to show our app in the browser 
 const root = ReactDOM.createRoot(el)
 
 // 4. create a component
@@ -113,14 +115,14 @@ steps to render nested component
 step1. export component from component module
 step2. import component module into app or index.js.
 do not use interpolation to render, that is for js vars. Instead render 
-component like so <Component />
+component like so <Component />, with wrapper tags
 
 /////////////////////////////////////////////////
 understand component hierachy
 
 ////////////
 props for properties
-props sysytem- systems for passing Data from the parent component to the child components. this is what makes components dynamic and costumization. think of props as js vars that look like html attributes. this props make componenets more dynamic. childrren cant pass props to parents directly
+props system- systems for passing Data from the parent component to the child components. this is what makes components dynamic and costumization. think of props as js vars that look like html attributes. this props make componenets more dynamic. childrren cant pass props to parents directly
 
 visaulize app like an object
 // one istance of app. the app holds the children. App is the parent
@@ -154,7 +156,7 @@ when consuming props. with child
 when consuming props.
 1. the first arguement for the component(the funct that returns jsx) is meant for the props obj. we get access to it if specified as a param in the component
 
-2. use interpolations to insert into jsx. its basically javascript values. again use {props.someShit}
+2. use interpolations to insert into jsx. its basically javascript values. again use {props.someData}
 
 3. they work like varaibles in js
 
@@ -1016,3 +1018,99 @@ i.e reduce([],action)
 3. reducers are pure. a reducer should not return values from operations outside its scope, it should not reach to external apis(DOM,FS,Axios) to return data, the only data it should return is the result of the operation perform on the passed args, state and action.
 
 4. do not mutate the state arg, instead create and return new data if operation where performed on the state. do not perform operations directly to the state. bad practice: keep in mind mutating old state wont emitted errors, but the reason to not mutate the state is because redux wont be able to tell if state has been updated, especially if state is a reference type(array/objects), because when checking for equality in reference, the values are not compared rather it is the location in memory. so if redux tests and sees the state still has the same memory, it will assume the state was not changed, even if it was. so primitive type state(bool,number,symbs,strings,bigInt) can be updated directly , but not reference type state(objects, arrays, maps, sets)
+
+// how to update state with out mutations.
+// its easier to spread the state values in to new reference object.
+// then we mutate the new reference object.
+1. add to array.
+state = []
+let newArray = [...state]
+newArray.push(value)
+
+or. newArray = [...state,value]
+
+2. remove from array.
+the filter method removes items and returns new array.
+let newArray = state.filter((item)=>{
+    item!=='given condition'
+})
+
+// objects 
+state = {}
+let newObject = {...state}
+
+// add to object.
+newObject.property = 'value'
+
+// remove from object.
+delete newObject.property
+
+/////////////////////////////////////////////////////////////
+// context system: the react context system aims to solve the problem of prop drilling.
+// it solves this by providing a global store for state, by doing this any component can have access to the state object by just using the useContext hook
+
+// using react context system id pretty straight forward.
+// step 1 create a context object with createcontext()
+        ie. globalStore = createContext()
+        
+            export default globalStore
+
+// step 2: use context by wrapping component with the provoder component on the context Object
+
+        the provider has a value prop to hold data or state
+
+        ie. <globalStore.Provider value={data}>
+                <App/>
+            <globalStore.Provider/>
+
+// step3: use data inside context, use the data by using the useContext hook
+        ie. const state = useContext(globalStore)
+
+
+
+// using context like the above methods is quite static, how can one change data to change State
+
+// to this we need to create a new Provider componenet
+
+// this component will recieve component props. props.children
+        ie. const Provider = ({children})=>{
+
+            // we then make use of the state hook, 
+
+            const [data, setData] = useState('')
+
+            // store state in object
+
+            let store = {
+                state1: [data, setData]
+            }
+
+            // then, just like before. we will pass data into the provider component(the context provider , not our custom provider comp)
+
+            // return the globalStore provider component and nest the children component recieved as props 
+
+            return <globalStore.Provider value={store}>{children}<globalStore.Provider>
+        }
+
+        export {Provider}
+
+
+// now we have made our custom provider, we than use it to wrap our app.
+        ie. <Provider><App/><Provider/>
+
+// use context like before
+
+const {state1} = useContext(globalStore)
+
+// difference between app state and component state.
+// app state is data that all other components in the application need.
+// component state is data that is only needed by a single component.
+
+
+/////////////////////////////
+// useffect dependency errors:
+// when using state in react, the useState hook creates a new variable evrytime the component is rerendered. though it may not seem like a new variable, but remember the component that has the state hook is a faunction and everytime our app rerenders the component function gets called a fresh and ends up creating a new variable in memory. the old state variable is still in memory too. so when using useEffect that depends on a variable that changes over time, it is best to put those variables into the dependency array of useEffect.
+
+i.e useeffect(()=>{},[dependencies])
+
+// by doing this every time app rerenders the component and all the function gets called a fresh and enabling the useEffect variable to detect changes

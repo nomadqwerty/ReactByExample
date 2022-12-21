@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchDataUsers } from "../actions";
+import _ from "lodash";
 
 const User = ({ ID, fetchDataUsers, user }) => {
+  console.log(ID);
   useEffect(() => {
     try {
-      fetchDataUsers(ID);
+      // fetchDataUsers(ID);
     } catch (error) {
       console.log(error);
     }

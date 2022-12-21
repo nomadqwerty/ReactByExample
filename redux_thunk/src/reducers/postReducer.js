@@ -1,10 +1,7 @@
 export const posts = (state = [], action) => {
   switch (action.type) {
     case "API_CALL":
-      if (action.payload instanceof Array) {
-        return action.payload;
-      }
-      return [action.payload];
+      return action.payload;
 
     case "ADD_POST":
       if (state) {
@@ -18,10 +15,7 @@ export const posts = (state = [], action) => {
 export const users = (state = [], action) => {
   switch (action.type) {
     case "API_CALL_USER":
-      if (action.payload instanceof Object) {
-        return action.payload;
-      }
-      return [action.payload];
+      return [...state, action.payload];
 
     case "ADD_USER":
       if (state) {
@@ -29,6 +23,7 @@ export const users = (state = [], action) => {
       }
       return state;
     default:
+      z;
       return state;
   }
 };

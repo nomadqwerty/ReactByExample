@@ -39,9 +39,25 @@ const options = [
 const App = () => {
   var [selected, setSelected] = useState(options[0]);
   let [toggle, setToggle] = useState(true);
+  let [loc, setloc] = useState(true);
+
+  useEffect(() => {
+    window.navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setloc({ lat: pos.coords.latitude, long: pos.coords.longitude });
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }, []);
   return (
     <div>
       <Header />
+      <p>
+        {loc.lat}' '{loc.long}
+      </p>
+
       <button
         onClick={() => {
           setToggle(!toggle);
