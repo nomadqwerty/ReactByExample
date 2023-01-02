@@ -8,7 +8,7 @@ const VideoDetail = ({ videoDetails }) => {
     return <div>loading...</div>;
   }
   return (
-    <div>
+    <div className="vidPlayerWrap">
       <div className="ui embed">
         <iframe src={vidSrc} title="videos" />
       </div>

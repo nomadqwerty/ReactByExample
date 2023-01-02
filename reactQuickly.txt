@@ -1114,3 +1114,32 @@ const {state1} = useContext(globalStore)
 i.e useeffect(()=>{},[dependencies])
 
 // by doing this every time app rerenders the component and all the function gets called a fresh and enabling the useEffect variable to detect changes
+
+
+////////////////////////////////////////
+// performance hooks- 
+// useCallback, when using a function in useeffect as a dependency, if the function changes the useEffect will be called. to prevent such behaviour we have to tell react that though the function chnges overtime it should be treated as if it doesnt change.
+
+// useCallback hooks- used to fix bugs, tell react that though the function chnges overtime it should be treated as if it doesnt change.
+
+// useCallback is used similar to useEffect.
+// the useCallback will return a stable reference to the function given to it.
+// the usecallback must have a dependencies array(empty or full)
+
+
+// 1st render, the useCallback doesnt do much on the first render it just returns a reference to the function,
+
+// 2nd and continous render,
+// if depency array is empty, the usecallback will return the function reference as it was passed in originally. it will not create a new function on rerender. will always point to function passed to usecallback the first time.
+
+// if depency array is full, the useCallback will return
+
+// useEffect cleanup function(use on useEffects that gets called multiple times and not only onComponentmount).
+
+1st render, useEffect  calls our function, returns a clean up function.
+
+2nd render, useEffect will first call the cleanup function, then call our function, then return the clean up again. this pattern is repeated over and over again.
+
+// useEffect is good with event listeners, our fucbtion adds a listener, the cleanup will remove the listener after our function runs.
+
+// used to do something and undo something

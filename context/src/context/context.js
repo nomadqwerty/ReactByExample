@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useCallback } from "react";
 
 const TestContext = createContext();
 
@@ -10,6 +10,13 @@ const Provider = ({ children }) => {
     count,
     setCount,
   };
+
+  // used well for fetch request functions(axios)/ OR FUNCTIIN THAT get called multiple times because on rerender new functions are created.
+
+  useCallback(() => {
+    // make request,
+    // set state
+  }, []);
 
   return <TestContext.Provider value={state}>{children}</TestContext.Provider>;
 };

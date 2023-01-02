@@ -4,7 +4,7 @@ const SearchBar = (props) => {
   const [input, setInput] = useState("");
   let onFormSubmit = (e) => {
     e.preventDefault();
-    props.vidSearch(input);
+    props.vidSearch("@theimpacttv2475");
   };
   let onInput = (e) => {
     let userVal = e.target.value;

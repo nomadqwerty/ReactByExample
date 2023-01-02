@@ -24,19 +24,21 @@ const App = (props) => {
   };
 
   useEffect(() => {
-    vidSearch("");
+    vidSearch("TheImpactTv247");
   }, []);
 
   return (
     <div className="ui container">
-      <SearchBar vidSearch={vidSearch} />
+      {/* <SearchBar vidSearch={vidSearch} /> */}
       <div className="ui grid">
         <div className="ui row">
-          <div className="eleven wide column">
-            <VideoDetail videoDetails={selectedVideo} />
-          </div>
-          <div className="five wide column">
-            <VidList onVideoSelect={onVideoSelect} items={data} />
+          <div className="vidWrap">
+            <div className="eleven wide column">
+              <VideoDetail videoDetails={selectedVideo} />
+            </div>
+            <div className="five wide column">
+              <VidList onVideoSelect={onVideoSelect} items={data} />
+            </div>
           </div>
         </div>
       </div>
