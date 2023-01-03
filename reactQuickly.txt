@@ -1143,3 +1143,49 @@ i.e useeffect(()=>{},[dependencies])
 // useEffect is good with event listeners, our fucbtion adds a listener, the cleanup will remove the listener after our function runs.
 
 // used to do something and undo something
+
+////////////////////////////////
+// create modal:create component to toggle modal with state(bool) with the click of a button ie: if true show modal else dont show
+
+const ModalPage = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const onModalClick = () => {
+    setShowModal(!showModal);
+  };
+
+  return (
+    <div>
+      <button
+        onClick={onModalClick}
+        className="ui button primary"
+        style={{ marginBottom: "10px" }}
+      >
+        Open Modal
+      </button>
+
+      {showModal ? <Modal /> : ""}
+    </div>
+  );
+
+
+design modal component with portals. 
+portals help making modals alot easier, when creating a modal. 
+what a portal will do is inject our html directly into the dom. but this wont be in the root div, it will be in another div whos parent is the body.
+
+// steps
+1. add div(class=modalWrap) to html
+
+2. import reactDOM from 'react-dom';
+
+3. ReactDOM.createPortal(), method is called when we need to inject jsx into the div(modalWrap). takes two args, jsx and element to inject jsx
+
+ie return ReactDOM.createPortal(
+    <div>
+        <Component/> or jsx
+    <div/>,
+
+    document.querySelector('.modalWrap')
+)
+
+

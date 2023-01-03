@@ -4,15 +4,15 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 const App = () => {
   return (
-    <div>
+    <div className="relative">
       <BrowserRouter>
-        <div>App</div>
+        <div></div>
         <Routes>
           <Route path="/modal" exact element={<ModalPage />} />
         </Routes>
-        <Link to="/modal" style={{ color: "blue" }}>
+        {/* <Link to="/modal" style={{ color: "blue" }}>
           click me!
-        </Link>
+        </Link> */}
       </BrowserRouter>
     </div>
   );
