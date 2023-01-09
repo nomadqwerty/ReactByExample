@@ -1,9 +1,21 @@
-.navBar {
-  background: rgba(96, 54, 203, 0.581);
-  height: 10vh;
-  width: 100%;
+.stickyHeader {
   position: sticky;
   top: 0;
+}
+.navBar {
+  background: rgba(69, 17, 200, 0.581);
+  height: 10vh;
+  width: 100%;
+
+  z-index: 5;
+  overflow: hidden;
+}
+.menuBar {
+  background: rgba(85, 226, 64, 0.581);
+  height: 80vh;
+  width: 33%;
+  border: 1px solid black;
+
   z-index: 5;
   overflow: hidden;
 }
