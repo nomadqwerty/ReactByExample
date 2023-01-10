@@ -1,11 +1,8 @@
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Menu = () => {
-  return (
-    <div className="menuBar">
-      <div className="menuList">menu bar</div>
-    </div>
-  );
+  return <div>menuList</div>;
 };
 
 export default Menu;

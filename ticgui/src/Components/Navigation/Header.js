@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Menu from "./Menu";
 import {
   logoImg,
@@ -7,15 +7,28 @@ import {
   academy,
   play,
   donate,
-  burger,
+  Burger,
 } from "./css/icons/svg";
+
+import { AnimatePresence, motion } from "framer-motion";
 // const logoText
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
-
-  const onClickBurger = () => {
-    setShowMenu(!showMenu);
+  const onClose = (e) => {
+    if (!e.target.classList.contains("burgerWrap")) {
+      if (showMenu) {
+        setShowMenu(false);
+      }
+    }
   };
+  useEffect(() => {
+    const body = document.querySelector("body");
+    body.addEventListener("click", onClose);
+
+    return () => {
+      body.removeEventListener("click", onClose);
+    };
+  });
   return (
     <div className="headerContainer">
       <div className="navBar">
@@ -28,12 +41,30 @@ const Header = () => {
           <div className="playIcon navIcon">{play}</div>
           <div className="donateIcon navIcon">{donate}</div>
         </div>
-        <div onClick={onClickBurger} className="burgerIcon">
-          {burger}
+        <div className="burgerIcon">
+          <Burger showMenu={showMenu} setShowMenu={setShowMenu} />
         </div>
       </div>
 
-      {showMenu ? <Menu /> : ""}
+      <AnimatePresence>
+        {showMenu && (
+          <motion.div
+            key="menuSideBar"
+            className="menuBar"
+            initial={{ x: "-30vw" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-40vw" }}
+          >
+            <motion.div
+              initial={{ x: "-30vw" }}
+              animate={{ x: 0, transition: { delay: 0.1 } }}
+              exit={{ x: "-40vw" }}
+            >
+              <Menu />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
