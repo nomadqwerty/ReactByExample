@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Menu from "./Menu";
 import {
   logoImg,
@@ -11,8 +11,13 @@ import {
 } from "./css/icons/svg";
 // const logoText
 const Header = () => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const onClickBurger = () => {
+    setShowMenu(!showMenu);
+  };
   return (
-    <div>
+    <div className="headerContainer">
       <div className="navBar">
         <div className="logoImg">{logoImg}</div>
         <div className="logoTxt">{logoTxt}</div>
@@ -23,9 +28,12 @@ const Header = () => {
           <div className="playIcon navIcon">{play}</div>
           <div className="donateIcon navIcon">{donate}</div>
         </div>
-        <div className="burgerIcon">{burger}</div>
+        <div onClick={onClickBurger} className="burgerIcon">
+          {burger}
+        </div>
       </div>
-      {/* <Menu /> */}
+
+      {showMenu ? <Menu /> : ""}
     </div>
   );
 };

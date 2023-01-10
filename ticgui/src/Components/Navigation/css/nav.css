@@ -3,6 +3,9 @@
   top: 0;
   z-index: 5;
 }
+.headerContainer {
+  height: 15vh;
+}
 .navBar {
   background: rgba(69, 17, 200, 0.581);
   height: 15vh;
@@ -13,9 +16,10 @@
 
 .menuBar {
   background: rgba(85, 226, 64, 0.581);
-  height: 80vh;
+  height: 84.5vh;
   width: 33%;
-  border: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
 
   z-index: 5;
   overflow: hidden;
@@ -32,7 +36,7 @@
 
 .navItems {
   position: relative;
-  left: 20vw;
+  left: 33vw;
   border-left: 4px solid black;
   border-right: 4px solid black;
   height: 100%;
@@ -48,5 +52,5 @@
 .burgerIcon {
   position: relative;
   top: 5vh;
-  left: 33vw;
+  left: 41.5vw;
 }
