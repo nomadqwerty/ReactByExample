@@ -25,7 +25,7 @@ const Header = () => {
         </div>
         <div className="burgerIcon">{burger}</div>
       </div>
-      <Menu />
+      {/* <Menu /> */}
     </div>
   );
 };
